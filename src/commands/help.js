@@ -14,10 +14,12 @@ module.exports = {
         // Accumulate list
         let list = [];
         for (let i = (pageNo * 10); i < Bot.commandsList.length; ++i) {
-            list.push({ name: Bot.commandsList[i].name, value: "`"+Bot.commandsList[i].desc+"`", inline: false });
+            list.push({ name: `${Bot.config.prefix}Bot.commandsList[i].name`, value: "`"+Bot.commandsList[i].desc+"`", inline: false });
         }
 
-        message.channel.send({ content: `${message.author}`,  embeds: [Embed.FieldEmbed("Help menu", `[Page ${pageNo+1} out of ${pages}]`, list)] });
+        message.channel.send({ content: `${message.author}`,  embeds: [Embed.FieldFooter("Help menu", `**Use ${Bot.config.prefix}help <command> for more info**`, 
+                list, { text: `Page ${pageNo+1}/${pages}`, iconURL: Bot.client.user.avatarURL() }
+        )] });
     }
 
 }

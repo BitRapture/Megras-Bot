@@ -10,5 +10,11 @@ module.exports = {
         let embed = this.SimpleEmbed(_title, _description, _color);
         embed.fields = _fields;
         return embed;
+    },
+    FieldFooter(_title, _description, _fields, _footer, _color = 0x9B59B6)
+    {
+        let embed = this.FieldEmbed(_title, _description, _fields, _color);
+        embed.footer = _footer;
+        return embed;
     }
 }
