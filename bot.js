@@ -34,7 +34,7 @@ Bot.config = require("./src/config.json");
 Bot.client.on("ready", () => {
     console.log(`Logged into Discord as ${Bot.client.user.tag}`);
     console.log(`Loaded ${Bot.commands.size} commands`);
-    Bot.client.user.setActivity({ name: `${Bot.config.prefix}help`, type: "LISTENING", url: Bot.config.statusUrl });
+    Bot.client.user.setActivity({ name: `${Bot.config.prefix}help`, type: "LISTENING", url: `${Bot.config.statusUrl}` });
 });
 
 // Setup message listener
