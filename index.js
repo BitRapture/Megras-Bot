@@ -14,3 +14,13 @@ BotProcess.on("close", (code) => {
         break;
     }
 });
+
+// Setup stdout errors
+BotProcess.on("error", (err) => {
+    console.error(err);
+});
+
+// Setup stdout data
+BotProcess.data("data", (data) => {
+    console.log(data);
+});
