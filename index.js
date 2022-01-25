@@ -21,6 +21,6 @@ BotProcess.on("error", (err) => {
 });
 
 // Setup stdout data
-BotProcess.data("data", (data) => {
+BotProcess.on("data", (data) => {
     console.log(data);
 });
