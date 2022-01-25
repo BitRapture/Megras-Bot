@@ -20,7 +20,7 @@ module.exports = {
                 // Lookup extra info on specific command
                 let cmd = Bot.commands.get(args[0].toLowerCase());
                 message.channel.send({ content: `${message.author}`, embeds: [Embed.FieldFooter(
-                    `Help menu: ${cmd.name}`, cmd.longdesc, cmd.examples, 
+                    `📘 Help menu: ${cmd.name}`, cmd.longdesc, cmd.examples, 
                     { text: `Command visible? ${cmd.visible ? "Yes" : "No" }`, iconURL: Bot.client.user.avatarURL() }
                 )] });
                 return;
@@ -35,7 +35,7 @@ module.exports = {
 
         // Send list
         message.channel.send({ content: `${message.author}`, embeds: [Embed.FieldFooter(
-            "Help menu", "Use `"+`${Bot.config.prefix}`+"help <command>` for more info", 
+            "📘 Help menu", "Use `"+`${Bot.config.prefix}`+"help <command>` for more info", 
             list, { text: `Page ${pageNo+1}/${pages}`, iconURL: Bot.client.user.avatarURL() }
         )] });
     }
