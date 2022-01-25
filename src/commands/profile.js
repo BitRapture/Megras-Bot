@@ -20,7 +20,7 @@ module.exports = {
                 CTX.drawImage(background, 0, 0, 320, 150);
 
                 loadImage(message.author.displayAvatarURL({ format: "png", size: 128 })).then((profile) => {
-                    CTX.drawImage(profile, 10, 10, 119, 119);
+                    CTX.drawImage(profile, 10, 10, 110, 110);
 
                     loadImage("./src/media/profile overlay.png").then((overlay) => {
                         CTX.drawImage(overlay, 0, 0, 320, 150);
