@@ -20,7 +20,7 @@ module.exports = {
                 CTX.drawImage(background, 0, 0, 320, 150);
             });
             
-            loadImage(message.author.avatarURL).then((profile) => {
+            loadImage(message.author.displayAvatarURL()).then((profile) => {
                 CTX.drawImage(profile, 10, 10, 119, 119);
             });
 
@@ -31,7 +31,7 @@ module.exports = {
             let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
             let embed = Embed.SimpleEmbed("Profile", `${message.member.nickname}'s profile`);
             embed.image = { url: file.url, width: 320, height: 150 };
-            msg.edit({ content: `${message.author}`, embeds: [embed], files: [Canvas.toBuffer()] });
+            msg.edit({ content: `${message.author}`, embeds: [embed] });
         })
     }
 }
