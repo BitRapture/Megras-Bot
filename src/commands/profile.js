@@ -1,3 +1,4 @@
+const { MessageAttachment } = require("discord.js");
 const { createCanvas, loadImage } = require("canvas");
 const Canvas = createCanvas(320, 150);
 const CTX = Canvas.getContext("2d");
@@ -27,9 +28,8 @@ module.exports = {
                 CTX.drawImage(overlay, 0, 0);
             });
             
-            let embed = Embed.SimpleEmbed("Profile", `${message.member.nickname}'s profile`);
-            embed.image = { url: Canvas.toDataURL(), width: 320, height: 150 };
-            msg.edit({ content: `${message.author}`, embeds: [embed] });
+            let file = new MessageAttachment(Canvas.toBuffer(), "profile.png");
+            msg.edit({ content: `${message.author}`, files: [file] });
         })
     }
 }
