@@ -4,7 +4,7 @@ module.exports = {
 
     Run(Bot, args, message) {
         if (message.author.id !== Bot.config.devId) { return; }
-        if (args.length < 0) { return; }
+        if (args.length <= 0) { return; }
         // Run through developer commands
         switch (args[0].toLowerCase())
         {
