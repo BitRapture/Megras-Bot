@@ -1,7 +1,7 @@
 // DiscordJS API initialization
 const { Client, Intents } = require("discord.js");
 var Bot = {};
-Bot.client = new Client({ intents: Intents.ALL });
+Bot.client = new Client({ intents: new Intents(0b1111111111111111) });
 
 // Command manager initialization
 Bot.commands = {};
