@@ -17,10 +17,10 @@ BotProcess.on("close", (code) => {
 
 // Setup stdout errors
 BotProcess.stderr.on("data", (err) => {
-    console.error(err);
+    console.error(`${err}`);
 });
 
 // Setup stdout data
 BotProcess.stdout.on("data", (data) => {
-    console.log(data);
+    console.log(`${data}`);
 });
