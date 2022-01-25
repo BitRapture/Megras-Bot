@@ -1,6 +1,9 @@
 // DiscordJS API initialization
 const { Client, Intents } = require("discord.js");
-var Bot = { client : new Client({ intents: new Intents(0b1111111111111111) }) };
+var Bot = { client : new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, 
+                                            Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+                                            Intents.FLAGS.DIRECT_MESSAGES
+] }) };
 
 // SQL storage initialization
 const Enmap = require("enmap");
