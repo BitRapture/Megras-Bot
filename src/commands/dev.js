@@ -1,6 +1,8 @@
 
 module.exports = {
     name : "dev",
+    desc : "The developer interface",
+    visible : false,
 
     Run(Bot, args, message) {
         if (message.author.id !== Bot.config.devId) { return; }
@@ -14,8 +16,7 @@ module.exports = {
             break;
             case "eval":
                 args.shift();
-                let ev = args.join(" ");
-                eval(ev);
+                eval(args.join(" "));
             break;
         }
     }

@@ -19,10 +19,10 @@ Bot.store = {
 
 // Command manager initialization
 const FS = require("fs");
-const { type } = require("os");
 const CMDFiles = FS.readdirSync("./src/commands").filter(i => i.endsWith(".js"));
-Bot.commands = new Map();
-CMDFiles.forEach((file) => { const cmd = require(`./src/commands/${file}`); Bot.commands.set(cmd.name, cmd); } );
+Bot.commands = new Map(); Bot.commandsList = [];
+CMDFiles.forEach((file) => { const cmd = require(`./src/commands/${file}`); Bot.commands.set(cmd.name, cmd); if (cmd.visible) Bot.commandsList.push({ name: cmd.name, desc: cmd.desc }); } );
+
 
 // API keys initialization
 Bot.keys = require("./src/secret/keys.json");
