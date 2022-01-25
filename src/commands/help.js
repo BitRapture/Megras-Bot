@@ -23,6 +23,7 @@ module.exports = {
                     `Help menu: ${cmd.name}`, cmd.longdesc, cmd.examples, 
                     { text: `Command visible? ${cmd.visible ? "Yes" : "No" }`, iconURL: Bot.client.user.avatarURL() }
                 )] });
+                return;
              }
         }
 
