@@ -40,9 +40,8 @@ Bot.client.on("messageCreate", (message) => {
 
     // Check server targets
     let inServer = false;
-    for (const id in Bot.config.serverTargets) { inServer |= (id == message.guildId); }
+    Bot.config.serverTargets.forEach((id) => { inServer |= (id === message.guildId); });
     if (!inServer) { return; }
-    console.log("in server :)");
 
     // Streaming handling
 
