@@ -11,7 +11,6 @@ BotProcess.on("close", (code) => {
         case 2: // Update and restart the bot
             console.log("Updating the bot through Discord...");
             execSync("sh ./update.sh");
-            BotProcess = fork("./bot.js");
         break;
     }
 });
