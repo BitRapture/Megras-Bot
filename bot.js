@@ -35,6 +35,15 @@ Bot.client.on("ready", () => {
     console.log(`Logged into Discord as ${Bot.client.user.tag}`);
     console.log(`Loaded ${Bot.commands.size} commands`);
     Bot.client.user.setActivity({ name: `${Bot.config.prefix}help`, type: "STREAMING", url: Bot.config.statusUrl });
+
+    // Check if bot was recently updated
+    if (Bot.store.dev.has("update")) {
+        let load = Bot.store.dev.get("update");
+        if (load.recent) {
+            Bot.store.dev.set("update", false, "recent");
+            Bot.client.guilds.cache.get(load.guild).channels.cache.get(load.channel).send(`${load.issuer}, Megras has restarted and updated.`);
+        }
+    }
 });
 
 // Setup message listener
