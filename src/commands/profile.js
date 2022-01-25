@@ -29,7 +29,9 @@ module.exports = {
             });
             
             let file = new MessageAttachment(Canvas.toBuffer(), "profile.png");
-            msg.edit({ content: `${message.author}`, files: [file] });
+            let embed = Embed.SimpleEmbed("Profile", `${message.member.nickname}'s profile`);
+            embed.image = { url: file.url, width: 320, height: 150 };
+            msg.edit({ content: `${message.author}`, embeds: [embed] });
         })
     }
 }
