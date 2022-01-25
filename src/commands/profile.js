@@ -15,15 +15,15 @@ module.exports = {
 
     Run(Bot, args, message) {
         message.channel.send({ content: `${message.author}`, embeds: [Embed.SimpleEmbed("Creating profile", "Please wait")] }).then((msg) => {
-            let background = loadImage("./src/media/profile.png").then(() => {
+            loadImage("./src/media/profile.png").then((background) => {
                 CTX.drawImage(background, 0, 0);
             });
             
-            let profile = loadImage(message.author.avatarURL).then(() => {
+            loadImage(message.author.avatarURL).then((profile) => {
                 CTX.drawImage(profile, 10, 10, 119, 119);
             });
 
-            let overlay = loadImage("./src/media/profile overlay.png").then(() => {
+            loadImage("./src/media/profile overlay.png").then((overlay) => {
                 CTX.drawImage(overlay, 0, 0);
             });
             
