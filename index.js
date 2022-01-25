@@ -16,11 +16,11 @@ BotProcess.on("close", (code) => {
 });
 
 // Setup stdout errors
-BotProcess.on("error", (err) => {
+BotProcess.stderr.on("data", (err) => {
     console.error(err);
 });
 
 // Setup stdout data
-BotProcess.on("data", (data) => {
+BotProcess.stdout.on("data", (data) => {
     console.log(data);
 });
