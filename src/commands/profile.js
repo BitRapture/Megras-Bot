@@ -4,8 +4,8 @@ const CTX = Canvas.getContext("2d");
 
 const Embed = require("../templates/embeds.js");
 
-const Background = loadImage("../media/profile.png");
-const Overlay = loadImage("../media/profile overlay.png");
+const Background = loadImage("./src/media/profile.png");
+const Overlay = loadImage("./src/media/profile overlay.png");
 
 module.exports = {
     name : "profile",
