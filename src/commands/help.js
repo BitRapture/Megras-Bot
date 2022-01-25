@@ -15,7 +15,7 @@ module.exports = {
         // Get pages
         let pages = Math.ceil(Bot.commandsList.length / 10), pageNo = 0;
         if (args.length == 1) {
-            if (!isNaN(args[0])) { pageNo = parseInt(args[0] - 1); pageNo = (pageNo < pages ? pageNo : 0); }
+            if (!isNaN(args[0])) { pageNo = parseInt(args[0] - 1); pageNo = (pageNo < pages && pageNo >= 0 ? pageNo : 0); }
             else if (Bot.commands.has(args[0].toLowerCase())) { 
                 // Lookup extra info on specific command
                 let cmd = Bot.commands.get(args[0].toLowerCase());
