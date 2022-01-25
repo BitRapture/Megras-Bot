@@ -48,7 +48,7 @@ Bot.client.on("messageCreate", (message) => {
 
     // Command handling
     if (!message.content.startsWith(Bot.config.prefix)) { return; }
-    let args = message.content.slice(Bot.config.prefix).split(" ");
+    let args = message.content.slice(Bot.config.prefix.length).split(" ");
     let command = args.shift().toLowerCase();
     if (!Bot.commands.has(command)) { return; }
     try {
