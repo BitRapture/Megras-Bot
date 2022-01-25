@@ -14,7 +14,7 @@ Bot.store = {
 
 // Command manager initialization
 const FS = require("fs");
-const CMDFiles = fs.readdirSync("./src/commands").filter(i => i.endsWith(".js"));
+const CMDFiles = FS.readdirSync("./src/commands").filter(i => i.endsWith(".js"));
 Bot.commands = new Map();
 for (const file in CMDFiles) { let cmd = require(`./src/commands/${file}`); Bot.commands.set(cmd.name, cmd); }
 
