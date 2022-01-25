@@ -16,11 +16,14 @@ module.exports = {
     ],
     visible : true,
 
-    async Run(Bot, args, message) {
+    Run(Bot, args, message) {
         message.channel.send({ content: `${message.author}`, embeds: [Embed.SimpleEmbed("Creating profile", "Please wait")] }).then((msg) => {
-            let profile = await loadImage(message.author.avatarURL);
             CTX.drawImage(Background, 0, 0);
-            CTX.drawImage(profile, 10, 10, 119, 119);
+            
+            let profile = loadImage(message.author.avatarURL).then(() => {
+                CTX.drawImage(profile, 10, 10, 119, 119);
+            });
+
             CTX.drawImage(Overlay, 0, 0);
             
             let embed = Embed.SimpleEmbed("Profile", `${message.member.nickname}'s profile`);
