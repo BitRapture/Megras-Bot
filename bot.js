@@ -9,16 +9,17 @@ var Bot = { client : new Client({ intents: [
 // SQL storage initialization
 const Enmap = require("enmap");
 Bot.store = {
-    dev : new Enmap({name: "dev", fetchAll: false, dataDir: "./store"}),
+    dev : new Enmap({ name: "dev", fetchAll: false, dataDir: "./store" }),
     users : {
-        inv : new Enmap({name: "userInv", fetchAll: false, dataDir: "./store"}),
-        lvl : new Enmap({name: "userLvl", fetchAll: false, dataDir: "./store"}),
-        bal : new Enmap({name: "userBal", fetchAll: false, dataDir: "./store"})
+        inv : new Enmap({ name: "userInv", fetchAll: false, dataDir: "./store" }),
+        lvl : new Enmap({ name: "userLvl", fetchAll: false, dataDir: "./store" }),
+        bal : new Enmap({ name: "userBal", fetchAll: false, dataDir: "./store" })
     }
 };
 
 // Command manager initialization
 const FS = require("fs");
+const { type } = require("os");
 const CMDFiles = FS.readdirSync("./src/commands").filter(i => i.endsWith(".js"));
 Bot.commands = new Map();
 CMDFiles.forEach((file) => { const cmd = require(`./src/commands/${file}`); Bot.commands.set(cmd.name, cmd); } );
@@ -33,6 +34,7 @@ Bot.config = require("./src/config.json");
 Bot.client.on("ready", () => {
     console.log(`Logged into Discord as ${Bot.client.user.tag}`);
     console.log(`Loaded ${Bot.commands.size} commands`);
+    Bot.client.setActivity({ name: `${Bot.config.prefix}help`, type: "LISTENING", url: Bot.config.statusUrl });
 });
 
 // Setup message listener
