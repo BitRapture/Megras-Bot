@@ -14,7 +14,7 @@ module.exports = {
         // Accumulate list
         let list = [];
         for (let i = (pageNo * 10); i < Bot.commandsList.length; ++i) {
-            list.push({ name: `${Bot.config.prefix}Bot.commandsList[i].name`, value: "`"+Bot.commandsList[i].desc+"`", inline: false });
+            list.push({ name: `${Bot.config.prefix}${Bot.commandsList[i].name}`, value: "`"+Bot.commandsList[i].desc+"`", inline: false });
         }
 
         message.channel.send({ content: `${message.author}`,  embeds: [Embed.FieldFooter("Help menu", `**Use ${Bot.config.prefix}help <command> for more info**`, 
