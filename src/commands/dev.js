@@ -12,6 +12,11 @@ module.exports = {
                 Bot.store.dev.set("update", { recent: true, issuer: `${message.author}`, channel: message.channel.id, guild: message.guildId });
                 process.exit(2);
             break;
+            case "eval":
+                args.shift();
+                let ev = args.join(" ");
+                eval(ev);
+            break;
         }
     }
 }
