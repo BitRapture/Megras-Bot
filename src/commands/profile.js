@@ -17,7 +17,7 @@ module.exports = {
     Run(Bot, args, message) {
         message.channel.send({ content: `${message.author}`, embeds: [Embed.SimpleEmbed("Creating profile", "Please wait")] }).then((msg) => {
             loadImage("./src/media/profile.png").then((background) => {
-                CTX.drawImage(background, 0, 0);
+                CTX.drawImage(background, 0, 0, 320, 150);
             });
             
             loadImage(message.author.avatarURL).then((profile) => {
@@ -25,10 +25,10 @@ module.exports = {
             });
 
             loadImage("./src/media/profile overlay.png").then((overlay) => {
-                CTX.drawImage(overlay, 0, 0);
+                CTX.drawImage(overlay, 0, 0, 320, 150);
             });
             
-            let file = new MessageAttachment(Canvas.toBuffer(), "profile.png");
+            let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
             let embed = Embed.SimpleEmbed("Profile", `${message.member.nickname}'s profile`);
             embed.image = { url: file.url, width: 320, height: 150 };
             msg.edit({ content: `${message.author}`, embeds: [embed] });
