@@ -27,6 +27,7 @@ Bot.config = require("./src/config.json");
 // Setup ready listener
 Bot.client.on("ready", () => {
     console.log(`Logged into Discord as ${Bot.client.user.tag}`);
+    console.log(`Loaded ${Bot.commands.size} commands`);
 });
 
 // Setup message listener
