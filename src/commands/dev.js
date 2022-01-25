@@ -2,6 +2,10 @@
 module.exports = {
     name : "dev",
     desc : "The developer interface",
+    longdesc : "This command is supposed to be invisible >:(",
+    examples : [
+        { name: "You get NO EXAMPLES", value: "`Get owned!`" }
+    ],
     visible : false,
 
     Run(Bot, args, message) {
