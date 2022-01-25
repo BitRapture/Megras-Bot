@@ -8,9 +8,7 @@ module.exports = {
     Run(Bot, args, message) {
         let pages = Math.ceil(Bot.commandsList.length / 10), pageNo = 0;
         if (args.length == 1) {
-            if (!isNaN(args[0])) {
-                pageNo = parseInt(args[0]);
-            }
+            if (!isNaN(args[0])) { pageNo = parseInt(args[0] - 1); pageNo = (pageNo < pages ? pageNo : 0); }
         }
 
         // Accumulate list
@@ -19,7 +17,7 @@ module.exports = {
             list.push({ name: Bot.commandsList[i].name, value: "`"+Bot.commandsList[i].desc+"`", inline: false });
         }
 
-        message.channel.send(`${message.author}`, { embeds: [Embed.FieldEmbed("Help menu", `[Page ${pageNo+1} out of ${pages+1}]`, list)] });
+        message.channel.send({ content: `${message.author}`,  embeds: [Embed.FieldEmbed("Help menu", `[Page ${pageNo+1} out of ${pages}]`, list)] });
     }
 
 }
