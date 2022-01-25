@@ -1,0 +1,19 @@
+{
+  "name": "megras",
+  "version": "1.0.0",
+  "description": "Discord adventure and puzzle bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BitRapture/Megras-Bot.git"
+  },
+  "author": "BitRapture",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BitRapture/Megras-Bot/issues"
+  },
+  "homepage": "https://github.com/BitRapture/Megras-Bot#readme"
+}
