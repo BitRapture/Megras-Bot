@@ -1,6 +1,9 @@
 // Meta bot controller
 const { fork, execSync } = require("child_process");
 
+// Run the bot process
+var BotProcess = fork("./bot.js");
+
 // Setup bot close listener
 BotProcess.on("close", (code) => {
     switch (code)
@@ -11,7 +14,4 @@ BotProcess.on("close", (code) => {
             BotProcess = fork("./bot.js");
         break;
     }
-})
-
-// Run the bot process
-var BotProcess = fork("./bot.js");
+});
