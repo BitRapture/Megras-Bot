@@ -42,6 +42,7 @@ Bot.client.on("messageCreate", (message) => {
     let inServer = false;
     Bot.config.serverTargets.forEach((id) => { inServer |= (id === message.guildId); });
     if (!inServer) { return; }
+    console.log(`${message.author.username}: ${message.content}`);
 
     // Streaming handling
 
