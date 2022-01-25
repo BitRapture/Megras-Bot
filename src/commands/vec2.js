@@ -144,7 +144,7 @@ module.exports = {
 					error = "Malformed command";
 			}
 			msgEmbed.description = type + " answer:\n" + ans; //"`` vec2D: [" + ans[0] + ", " + ans[1] + "]``";
-			if (error !== "fine") msgEmbed.description = Embed.Error(error);
+			if (error !== "fine") msgEmbed = Embed.Error(error);
 			message.channel.send({ content: `${message.author}`, embeds: [msgEmbed] });
 		} else {
 			msgEmbed.description = "List of available commands";
