@@ -27,7 +27,7 @@ module.exports = {
 
 
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
-                        let embed = new MessageEmbed({ title: "Profile", description: `${message.member.nickname}'s profile`, color: 0x9B59B6 })
+                        let embed = new MessageEmbed({ title: `${message.member.nickname}'s profile`, color: 0x9B59B6 })
                         .setImage("attachment://profile.png");
                         msg.edit({ content: `${message.author}`, embeds: [embed], files: [file] });
                     });
