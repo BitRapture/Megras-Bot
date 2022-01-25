@@ -2,7 +2,7 @@
 module.exports = {
     SimpleEmbed(_title, _description, _color = 0x9B59B6)
     {
-        let embed = { title: _title, description: _description, color: _color }
+        let embed = { title: _title, description: _description, color: _color };
         return embed;
     },
     FieldEmbed(_title, _description, _fields, _color = 0x9B59B6)
@@ -15,6 +15,11 @@ module.exports = {
     {
         let embed = this.FieldEmbed(_title, _description, _fields, _color);
         embed.footer = _footer;
+        return embed;
+    },
+    Error(_error)
+    {
+        let embed = { title: "Error!", description: _error, color: 0xFF0000 };
         return embed;
     }
 }
