@@ -16,7 +16,7 @@ Bot.store = {
 const FS = require("fs");
 const CMDFiles = FS.readdirSync("./src/commands").filter(i => i.endsWith(".js"));
 Bot.commands = new Map();
-CMDFiles.forEach((file) => { let cmd = require(`./src/commands/${file}`); Bot.commands.set(cmd.name, cmd); } );
+CMDFiles.forEach((file) => { let cmd = require(`./src/commands/${file}`); Bot.commands.set(cmd.name, cmd); console.log(file); } );
 
 // API keys initialization
 Bot.keys = require("./src/secret/keys.json");
