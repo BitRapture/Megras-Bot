@@ -32,7 +32,7 @@ CMDFiles.forEach((file) => {
     const cmd = require(`./src/commands/${file}`); 
     Bot.commands.set(cmd.name, cmd); 
     if (cmd.visible) Bot.commandsList.push({ name: cmd.name, desc: cmd.desc }); 
-    cmd.examples.forEach((example) => { example.value.replaceAll("$", Bot.config.prefix); });
+    cmd.examples.forEach((example) => { example.value.replace(/$/g, Bot.config.prefix); });
 });
 
 
