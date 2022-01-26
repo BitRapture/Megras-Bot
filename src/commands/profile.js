@@ -20,6 +20,7 @@ module.exports = {
                 CTX.drawImage(background, 0, 0, 320, 150);
 
                 loadImage(message.author.displayAvatarURL({ format: "png", size: 128 })).then((profile) => {
+                    // Convert avatar to greyscale
                     CTX.save();
                     CTX.fillStyle = "#FFF";
                     CTX.fillRect(10, 10, 110, 110);
@@ -30,7 +31,8 @@ module.exports = {
                     loadImage("./src/media/profile overlay.png").then((overlay) => {
                         CTX.drawImage(overlay, 0, 0, 320, 150);
 
-
+                        
+                        // Upload file and insert into embed
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
                         let embed = new MessageEmbed({ title: `${message.member.nickname}'s profile`, color: 0x9B59B6 }).setImage("attachment://profile.png");
                         msg.edit({ content: `${message.author}`, embeds: [embed], files: [file] });

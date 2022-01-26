@@ -13,7 +13,8 @@ Bot.store = {
     users : {
         inv : new Enmap({ name: "userInv", fetchAll: false, dataDir: "./store" }),
         lvl : new Enmap({ name: "userLvl", fetchAll: false, dataDir: "./store" }),
-        bal : new Enmap({ name: "userBal", fetchAll: false, dataDir: "./store" })
+        bal : new Enmap({ name: "userBal", fetchAll: false, dataDir: "./store" }),
+        aly : new Enmap({ name: "userAly", fetchAll: false, dataDir: "./store" })
     }
 };
 
