@@ -39,6 +39,9 @@ module.exports = {
                         let bal = (Bot.store.users.bal.has(message.author.id) ? Bot.store.users.bal.get(message.author.id) : 0);
                         CTX.fillText(bal.toString().substring(0, 6).padStart(7, "0"), 324, 164);
                         
+                        // Show nickname
+                        CTX.fillText(message.member.nickname.substring(0, 6), 254, 36);
+
                         // Upload file and insert into embed
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
                         let embed = new MessageEmbed({ title: `${message.member.nickname}'s profile`, color: 0x9B59B6 }).setImage("attachment://profile.png");
