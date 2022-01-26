@@ -38,11 +38,11 @@ module.exports = {
 
                         // Load player balance
                         let bal = Bot.store.users.bal.get(member.id); bal = (bal === undefined ? 0 : bal);
-                        CTX.fillText(bal.toString().substring(0, 6).padStart(7, "0"), 324, 164);
+                        CTX.fillText(bal.toString().substring(0, 7).padStart(7, "0"), 324, 164);
                         
                         // Show nickname
                         let nickname = (member.nickname === null ? member.user.username : member.nickname);
-                        CTX.fillText(nickname.substring(0, 8), 254, 36);
+                        CTX.fillText(nickname.substring(0, 9), 254, 36);
 
                         // Upload file and insert into embed
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
