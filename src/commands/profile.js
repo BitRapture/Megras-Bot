@@ -41,6 +41,7 @@ module.exports = {
                         CTX.fillText(bal.toString().substring(0, 6).padStart(7, "0"), 324, 164);
                         
                         // Show nickname
+                        let nickname = member.nickname; nickname = (nickname === undefined ? member.username : nickname);
                         CTX.fillText(member.nickname.substring(0, 8), 254, 36);
 
                         // Upload file and insert into embed
