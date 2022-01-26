@@ -35,7 +35,6 @@ CMDFiles.forEach((file) => {
     cmd.examples.forEach((e, i, example) => { example[i].value = example[i].value.replaceAll("$", Bot.config.prefix); });
 });
 
-
 // API keys initialization
 Bot.keys = require("./src/secret/keys.json");
 
