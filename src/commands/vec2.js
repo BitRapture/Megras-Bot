@@ -59,7 +59,7 @@ module.exports = {
 	longdesc : "A 2D vector utility that contains a few operations",
 	examples : [
 		{ name: "Add vectors", value: "`$vec2 add 1 2 3 4` or `$vec2 + 4 3 2 1`" },
-		{ name: "Get full list of commands", value: "$`vec2`" },
+		{ name: "Get full list of commands", value: "`$vec2`" },
 	],
 	visible : true,
 	
