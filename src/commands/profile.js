@@ -42,7 +42,7 @@ module.exports = {
                         
                         // Show nickname
                         let nickname = member.nickname; nickname = (nickname === null ? member.username : nickname);
-                        CTX.fillText(member.nickname.substring(0, 8), 254, 36);
+                        CTX.fillText(nickname.substring(0, 8), 254, 36);
 
                         // Upload file and insert into embed
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
