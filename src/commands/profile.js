@@ -19,11 +19,12 @@ module.exports = {
     visible : true,
 
     Run(Bot, args, message) {
+        let member = message.mentions.members.first(); member = (member === undefined ? message.member : member);
         message.channel.send({ content: `${message.author}`, embeds: [Embed.SimpleEmbed("Creating profile", "Please wait")] }).then((msg) => {
             loadImage("./src/media/profile.png").then((background) => {
                 CTX.drawImage(background, 0, 0, 640, 300);
 
-                loadImage(message.author.displayAvatarURL({ format: "png", size: 128 })).then((profile) => {
+                loadImage(member.displayAvatarURL({ format: "png", size: 128 })).then((profile) => {
                     // Convert avatar to greyscale
                     CTX.save();
                     CTX.fillStyle = "#FFF";
@@ -36,15 +37,15 @@ module.exports = {
                         CTX.drawImage(overlay, 0, 0, 640, 300);
 
                         // Load player balance
-                        let bal = (Bot.store.users.bal.has(message.author.id) ? Bot.store.users.bal.get(message.author.id) : 0);
+                        let bal = Bot.store.users.bal.get(member.id); bal = (bal === undefined ? 0 : bal);
                         CTX.fillText(bal.toString().substring(0, 6).padStart(7, "0"), 324, 164);
                         
                         // Show nickname
-                        CTX.fillText(message.member.nickname.substring(0, 8), 254, 36);
+                        CTX.fillText(member.nickname.substring(0, 8), 254, 36);
 
                         // Upload file and insert into embed
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
-                        let embed = new MessageEmbed({ title: `${message.member.nickname}'s profile`, color: 0x9B59B6 }).setImage("attachment://profile.png");
+                        let embed = new MessageEmbed({ title: `${member.nickname}'s profile`, color: 0x9B59B6 }).setImage("attachment://profile.png");
                         msg.edit({ content: `${message.author}`, embeds: [embed], files: [file] });
                     });
                 });
