@@ -40,7 +40,7 @@ module.exports = {
                         CTX.fillText(bal.toString().substring(0, 6).padStart(7, "0"), 324, 164);
                         
                         // Show nickname
-                        CTX.fillText(message.member.nickname.substring(0, 6), 254, 36);
+                        CTX.fillText(message.member.nickname.substring(0, 8), 254, 36);
 
                         // Upload file and insert into embed
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
