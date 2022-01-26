@@ -18,8 +18,8 @@ module.exports = {
     Run(Bot, args, message) {
         message.channel.send({ content: `${message.author}`, embeds: [Embed.SimpleEmbed("Creating profile", "Please wait")] }).then((msg) => {
             loadImage("./src/media/profile.png").then((background) => {
-                CTX.drawImage(background, 0, 0, 320, 150);
                 CTX.imageSmoothingEnabled = false;
+                CTX.drawImage(background, 0, 0, 320, 150);
 
                 loadImage(message.author.displayAvatarURL({ format: "png", size: 128 })).then((profile) => {
                     // Convert avatar to greyscale
@@ -33,11 +33,11 @@ module.exports = {
                     loadImage("./src/media/profile overlay.png").then((overlay) => {
                         CTX.drawImage(overlay, 0, 0, 320, 150);
                         CTX.font = "20px Pixel";
+                        CTX.textBaseline = "top";
 
                         // Load player balance
                         let bal = (Bot.store.users.bal.has(message.author.id) ? Bot.store.users.bal.get(message.author.id) : 0);
-                        bal.toString().substring(0, 6).padStart(7, "0");
-                        CTX.fillText(bal, 162, 98);
+                        CTX.fillText(bal.toString().substring(0, 6).padStart(7, "0"), 162, 82);
                         
                         // Upload file and insert into embed
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
