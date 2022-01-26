@@ -5,9 +5,9 @@ module.exports = {
     desc : "Shows all commands",
     longdesc : "Displays all visible commands in pages of 10 elements",
     examples : [
-        { name: "Get specific page", value: "`help <page>`" },
-        { name: "Get specific command", value: "`help <command>`" },
-        { name: "Get first page", value: "`help 1` or `help`" }
+        { name: "Get specific page", value: "`$help <page>`" },
+        { name: "Get specific command", value: "`$help <command>`" },
+        { name: "Get first page", value: "`$help 1` or `$help`" } // todo: replace placeholder prefix with current prefix
     ],
     visible : true,
 

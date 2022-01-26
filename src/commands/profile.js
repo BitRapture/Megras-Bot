@@ -14,7 +14,7 @@ module.exports = {
     desc : "Display your profile",
     longdesc : "Displays your profile and coin balance",
     examples : [
-        { name: "Display someone elses profile", value: "`profile <@user>`" }
+        { name: "Display someone elses profile", value: "`$profile <@user>`" }
     ],
     visible : true,
 

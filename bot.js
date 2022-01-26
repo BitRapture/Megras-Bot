@@ -6,6 +6,9 @@ var Bot = { client : new Client({ intents: [
     Intents.FLAGS.DIRECT_MESSAGES
 ] }) };
 
+// Config initialization
+Bot.config = require("./src/config.json");
+
 // SQL storage initialization
 const Enmap = require("enmap");
 Bot.store = {
@@ -25,14 +28,16 @@ Bot.store = {
 const FS = require("fs");
 const CMDFiles = FS.readdirSync("./src/commands").filter(i => i.endsWith(".js"));
 Bot.commands = new Map(); Bot.commandsList = [];
-CMDFiles.forEach((file) => { const cmd = require(`./src/commands/${file}`); Bot.commands.set(cmd.name, cmd); if (cmd.visible) Bot.commandsList.push({ name: cmd.name, desc: cmd.desc }); } );
+CMDFiles.forEach((file) => { 
+    const cmd = require(`./src/commands/${file}`); 
+    Bot.commands.set(cmd.name, cmd); 
+    if (cmd.visible) Bot.commandsList.push({ name: cmd.name, desc: cmd.desc }); 
+    cmd.examples.forEach((example) => { example.value.replaceAll("$", Bot.config.prefix); });
+});
 
 
 // API keys initialization
 Bot.keys = require("./src/secret/keys.json");
-
-// Config initialization
-Bot.config = require("./src/config.json");
 
 // Setup ready listener
 Bot.client.on("ready", () => {
