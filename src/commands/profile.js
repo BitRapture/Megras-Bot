@@ -1,5 +1,6 @@
 const { MessageAttachment, MessageEmbed } = require("discord.js");
-const { createCanvas, loadImage } = require("canvas");
+const { createCanvas, loadImage, registerFont } = require("canvas");
+registerFont("./src/media/Pixel.ttf", { family: "Pixel" });
 const Canvas = createCanvas(320, 150);
 const CTX = Canvas.getContext("2d");
 
@@ -30,7 +31,12 @@ module.exports = {
 
                     loadImage("./src/media/profile overlay.png").then((overlay) => {
                         CTX.drawImage(overlay, 0, 0, 320, 150);
+                        CTX.font = "20px Pixel";
 
+                        // Load player balance
+                        let bal = (Bot.store.users.bal.has(message.author.id) ? Bot.store.users.bal.get(message.author.id) : 0);
+                        bal.toString().substring(0, 6).padStart(7, "0");
+                        CTX.fillText(bal, 162, 82);
                         
                         // Upload file and insert into embed
                         let file = new MessageAttachment(Canvas.toBuffer("image/png"), "profile.png");
