@@ -25,6 +25,7 @@ module.exports = {
             else { 
                 embed = Embed.SimpleEmbed(`Aliance profile: ${userAly}`, "Data will be showed here when there is things to do in the future :)"); 
             }
+            message.reply({ embeds: [embed] });
             return;
         }
 
@@ -55,7 +56,7 @@ module.exports = {
             break;
 
             case "join":
-                
+
             break;
 
             case "leave":
