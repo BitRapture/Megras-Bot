@@ -23,7 +23,7 @@ module.exports = {
         if (args.length < 1) {
             if (userAly === "") { embed = Embed.SimpleEmbed("Aliance profile: no alliance", "Join an alliance with"+`${Bot.config.prefix}alliance join <name>`); }
             else { 
-                embed = Embed.SimpleEmbed(`Aliance profile: ${userAly}`, "Data will be showed here when there is things to do in the future :)"); 
+                embed = Embed.SimpleEmbed(`Alliance profile: ${userAly}`, "Data will be showed here when there is things to do in the future :)"); 
             }
             message.reply({ embeds: [embed] });
             return;
