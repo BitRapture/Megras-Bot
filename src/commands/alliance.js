@@ -52,7 +52,7 @@ module.exports = {
             break;
 
             case "disband":
-                if (Bot.store.alliances.owner.has(alyName)) { embed = Embed.Error("Alliance doesn't exist"); break; } 
+                if (!Bot.store.alliances.owner.has(alyName)) { embed = Embed.Error("Alliance doesn't exist"); break; } 
                 if (userAly === "") { embed = Embed.Error("You don't own an alliance"); break; }
                 if (message.author.id !== Bot.store.alliances.owner.get(alyName)) { embed = Embed.Error(`You don't own ${alyName}`); break; }
 
