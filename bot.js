@@ -14,13 +14,17 @@ const Enmap = require("enmap");
 Bot.store = {
     dev : new Enmap({ name: "dev", fetchAll: false, dataDir: "./store" }),
     users : {
-        inv : new Enmap({ name: "userInv", fetchAll: false, dataDir: "./store" }),
-        lvl : new Enmap({ name: "userLvl", fetchAll: false, dataDir: "./store" }),
-        bal : new Enmap({ name: "userBal", fetchAll: false, dataDir: "./store" }),
-        aly : new Enmap({ name: "userAly", fetchAll: false, dataDir: "./store" })
+        inv : new Enmap({ name: "userInv", fetchAll: false, dataDir: "./store" }),      // Inventory
+        lvl : new Enmap({ name: "userLvl", fetchAll: false, dataDir: "./store" }),      // Level
+        bal : new Enmap({ name: "userBal", fetchAll: false, dataDir: "./store" }),      // Balance
+        aly : new Enmap({ name: "userAly", fetchAll: false, dataDir: "./store" })       // Alliance 
     },
     alliances : {
-        list : new Enmap({ name: "alyList", fetchAll: false, dataDir: "./store" })
+        list : new Enmap({ name: "alyList", fetchAll: false, dataDir: "./store" }),     // List of users
+        mult : new Enmap({ name: "alyMult", fetchAll: false, dataDir: "./store" }),     // Current currency multiplyer
+        lvl : new Enmap({ name: "alyLvl", fetchAll: false, dataDir: "./store" }),       // Level of alliance
+        exp : new Enmap({ name: "alyExp", fetchAll: false, dataDir: "./store" }),       // Experience of alliance
+        owner : new Enmap({ name: "alyOwner", fetchAll: false, dataDir: "./store" })    // Owner of alliance
     }
 };
 

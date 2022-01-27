@@ -24,6 +24,6 @@ module.exports = {
     },
     Malformed()
     {
-        return this.Error("Malformed command", "Check the command arguments");
+        return this.Error("Malformed command, check the command arguments!");
     }
 }
