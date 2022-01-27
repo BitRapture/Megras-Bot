@@ -21,5 +21,9 @@ module.exports = {
     {
         let embed = { title: "Error!", description: _error, color: 0xFF0000 };
         return embed;
+    },
+    Malformed()
+    {
+        return this.Error("Malformed command", "Check the command arguments");
     }
 }
