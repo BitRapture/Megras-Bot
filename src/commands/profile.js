@@ -38,7 +38,8 @@ module.exports = {
 
                         // Load player balance
                         let bal = Bot.store.users.bal.get(member.id); bal = (bal === undefined ? 0 : bal);
-                        CTX.fillText(bal.toString().substring(0, 7).padStart(7, "0"), 324, 164);
+                        bal = bal.toString().padStart(7, "0"); if (bal.length > 7) { bal = "9999999"; }
+                        CTX.fillText(bal, 324, 164);
                         
                         // Show nickname
                         let nickname = (member.nickname === null ? member.user.username : member.nickname);
