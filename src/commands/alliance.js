@@ -24,7 +24,13 @@ module.exports = {
         if (args.length < 1) {
             if (userAly === "") { embed = Embed.SimpleEmbed("Aliance profile: no alliance", `Join an alliance with \`${Bot.config.prefix}alliance join <name>\``); }
             else { 
-                embed = Embed.SimpleEmbed(`Alliance profile: ${userAly}`, "Data will be showed here when there is things to do in the future :)"); 
+                let fields = [
+                    { name: "Member count", value: Bot.store.alliances.list.get(userAly).length, inline: true },
+                    { name: "Level", value: Bot.store.alliances.lvl.get(userAly), inline: true },
+                    { name: "Experience", value: Bot.store.alliances.exp.get(userAly), inline: true },
+                    { name: "Multiplier", value: Bot.store.alliances.mult.get(userAly), inline: true }
+                ]
+                embed = Embed.FieldEmbed(`Alliance profile: ${userAly}`, `Information for the alliance, \`${userAly}\``, fields); 
             }
             message.reply({ embeds: [embed] });
             return;
