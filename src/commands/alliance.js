@@ -75,7 +75,7 @@ module.exports = {
                 list.forEach((uid) => { 
                     Bot.store.users.aly.set(uid, ""); 
                     if (uid !== message.author.id) { 
-                        let mBal = Bot.store.users.get(uid); mBal = (mBal === undefined ? 0 : mBal);
+                        let mBal = Bot.store.users.bal.get(uid); mBal = (mBal === undefined ? 0 : mBal);
                         Bot.store.users.bal.set(uid, mBal + memberPay); 
                     }
                 });
