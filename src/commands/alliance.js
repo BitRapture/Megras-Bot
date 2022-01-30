@@ -39,7 +39,7 @@ module.exports = {
             case "create":
                 if (userAly !== "") { embed = Embed.Error("Already in an alliance, leave or disband"); break; }
                 if (userBal < 100) { embed = Embed.Error("Insufficient funds, `100MAGS` required"); break; }
-                if (Bot.store.alliances.list.has(alyName)) { embed = Embed.Error(`The alliance ${alyName} already exists`); break; }
+                if (Bot.store.alliances.list.has(alyName)) { embed = Embed.Error(`Alliance already exists`); break; }
                 
                 // Deduct balance
                 Bot.store.users.bal.set(message.author.id, userBal - 100);
