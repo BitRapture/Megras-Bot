@@ -28,11 +28,11 @@ module.exports = {
             }
             message.reply({ embeds: [embed] });
             return;
-        } else if (args.length < 2) { return; } // Malformed
+        } else if (args.length < 2) { message.reply({ embeds: [embed] }); return; } // Malformed
 
         let alyName = args[1].replace(/[^a-zA-Z0-9_\- ]/g, "");
         if (alyName.length < 3) { embed = Embed.Error("An alliance name must be at least 3 characters long"); return; }
-        else if (alyName.length >= 51) { embed = Embed.Error("An alliance name cannot be longer than 50 characters"); return; }
+        else if (alyName.length >= 31) { embed = Embed.Error("An alliance name cannot be longer than 30 characters"); return; }
 
         switch (args[0].toLowerCase())
         {
@@ -43,9 +43,9 @@ module.exports = {
                 
                 // Deduct balance
                 Bot.store.users.bal.set(message.author.id, userBal - 100);
-                Bot.store.users.aly.set(message.author.id, alyName);
-
+                
                 // Create alliance
+                Bot.store.users.aly.set(message.author.id, alyName);
                 Bot.store.alliances.list.set(alyName, [message.author.id]);
                 Bot.store.alliances.owner.set(alyName, message.author.id);
                 Bot.store.alliances.mult.set(alyName, 1);
@@ -57,7 +57,6 @@ module.exports = {
 
             case "disband":
                 if (!Bot.store.alliances.owner.has(alyName)) { embed = Embed.Error("Alliance doesn't exist"); break; } 
-                if (userAly === "") { embed = Embed.Error("You don't own an alliance"); break; }
                 if (message.author.id !== Bot.store.alliances.owner.get(alyName)) { embed = Embed.Error(`You don't own ${alyName}`); break; }
 
                 let list = Bot.store.alliances.list.get(alyName);
@@ -89,11 +88,29 @@ module.exports = {
 
             case "join":
                 if (userAly !== "") { embed = Embed.Error("Already in an alliance, leave or disband"); break; }
+                if (!Bot.store.alliances.owner.has(alyName)) { embed = Embed.Error("Alliance doesn't exist"); break; } 
+                if (userBal < 5) { embed = Embed.Error("Insufficient funds, `5MAGS` required"); break; }
+                
+                // Deduct balance
+                Bot.store.users.bal.set(message.author.id, userBal - 5);
 
+                // Add user to member list
+                Bot.store.users.aly.set(message.author.id, alyName);
+                Bot.store.alliances.list.push(alyName, message.author.id);
+
+                embed = Embed.SimpleEmbed("Joined alliance", `You are now a member of \`${alyName}\``);
             break;
 
             case "leave":
+                if (userAly === "") { embed = Embed.Error("Not in an alliance"); break; }
+                if (!Bot.store.alliances.owner.has(alyName)) { embed = Embed.Error("Alliance doesn't exist"); break; } 
+                if (Bot.store.alliances.list.get(alyName).find(uid => message.author.id === uid) === undefined) { embed = Embed.Error("Not a member of this alliance"); break; } 
 
+                // Remove user from member list
+                Bot.store.users.aly.set(message.author.id, "");
+                Bot.store.alliances.list.remove(alyName, message.author.id);
+                
+                embed = Embed.SimpleEmbed("Left alliance", `You are no longer a member of \`${alyName}\``);
             break;
 
             case "edit":
