@@ -29,7 +29,7 @@ module.exports = {
                     { name: "Level", value: `${Bot.store.alliances.lvl.get(userAly)}`, inline: true },
                     { name: "Experience", value: `${Bot.store.alliances.exp.get(userAly)}`, inline: true },
                     { name: "Multiplier", value: `${Bot.store.alliances.mult.get(userAly)}`, inline: true },
-                    { name: "Owner?", value: `${(message.author.id === Bot.store.alliances.owner.get(alyName) ? "True" : "False")}`, inline: true }
+                    { name: "Owner?", value: `${(message.author.id === Bot.store.alliances.owner.get(userAly) ? "True" : "False")}`, inline: true }
                 ]
                 embed = Embed.FieldEmbed(`Alliance profile: ${userAly}`, `Information for the alliance, \`${userAly}\``, fields); 
             }
