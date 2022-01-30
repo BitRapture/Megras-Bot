@@ -14,6 +14,8 @@ module.exports = {
         // Run through developer commands
         switch (args[0].toLowerCase())
         {
+            case "push":
+            case "up":
             case "update":
                 Bot.store.dev.set("update", { recent: true, issuer: `${message.author}`, channel: message.channel.id, guild: message.guildId });
                 process.exit(2);
