@@ -16,7 +16,7 @@ module.exports = {
 	],
 	visible : true,
 
-    DisplayProfile(Bot, userAly) {
+    DisplayProfile(Bot, userAly, id) {
         let embed;
         if (userAly === "") { embed = Embed.SimpleEmbed("Aliance profile: no alliance", `Join an alliance with \`${Bot.config.prefix}alliance join <name>\``); }
         else { 
@@ -25,7 +25,7 @@ module.exports = {
                 { name: "Level", value: `${Bot.store.alliances.lvl.get(userAly)}`, inline: true },
                 { name: "Experience", value: `${Bot.store.alliances.exp.get(userAly)}`, inline: true },
                 { name: "Multiplier", value: `${Bot.store.alliances.mult.get(userAly)}`, inline: true },
-                { name: "Owner?", value: `${(message.author.id === Bot.store.alliances.owner.get(userAly) ? "True" : "False")}`, inline: true }
+                { name: "Owner?", value: `${(id === Bot.store.alliances.owner.get(userAly) ? "True" : "False")}`, inline: true }
             ]
             embed = Embed.FieldEmbed(`Alliance profile: ${userAly}`, `Information for the alliance, \`${userAly}\``, fields); 
         }
@@ -38,7 +38,7 @@ module.exports = {
         let userBal = Bot.store.users.bal.get(message.author.id); userBal = (userBal === undefined ? 0 : userBal);
 
         // Display alliance profile
-        if (args.length < 1) { message.reply({ embeds: [this.DisplayProfile(Bot, userAly)] }); return; } 
+        if (args.length < 1) { message.reply({ embeds: [this.DisplayProfile(Bot, userAly, message.author.id)] }); return; } 
         else if (args.length < 2) { message.reply({ embeds: [embed] }); return; } // Malformed
 
         let alyName = args[1].replace(/[^a-zA-Z0-9_\- ]/g, "");
@@ -49,8 +49,8 @@ module.exports = {
         {
             case "view":
                 if (!Bot.store.alliances.owner.has(alyName)) { embed = Embed.Error("Alliance doesn't exist"); break; } 
-                
-                embed = this.DisplayProfile(Bot, alyName);
+
+                embed = this.DisplayProfile(Bot, alyName, message.author.id);
             break;
 
             case "create":
