@@ -8,6 +8,10 @@ module.exports = {
         let userExp = Bot.store.users.exp.get(message.author.id); userExp = (userExp === undefined ? 0 : userExp);
         let userLvl = Bot.store.users.lvl.get(message.author.id); userLvl = (userLvl === undefined ? 0 : userLvl);
 
+        // Add to cooldown
+        let minute = new Date(); minute.setUTCSeconds(minute.getUTCSeconds() + 60);
+        Cooldown.set(message.author.id, +minute);
+
         // Calculate next experience drop
         expCountDown = Math.floor((Math.random() * 5) + 1); // 1 - 6
 
@@ -18,13 +22,9 @@ module.exports = {
         // Check level up
         let nextLevel = ((userLvl + 1) * 500);
         if (userExp >= nextLevel) { 
-            Bot.store.users.lvl.set(message.author.id, ++userLvl);
+            Bot.store.users.lvl.set(message.author.id, (userLvl + 1));
             message.react(Bot.config.customEmojis.PogU);
         }
-
-        // Add to cooldown
-        let minute = new Date(); minute.setUTCSeconds(minute.getUTCSeconds() + 60);
-        Cooldown.set(message.author.id, +minute);
     }
 
 }
