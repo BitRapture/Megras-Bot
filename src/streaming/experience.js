@@ -1,4 +1,4 @@
-const Cooldown = new Map();
+const Cooldown = new Map(); // Todo, add a cleanup routine that checks old cooldowns and removes them from memory
 var expCountDown = 2;
 
 module.exports = {
@@ -11,13 +11,20 @@ module.exports = {
         // Calculate next experience drop
         expCountDown = Math.floor((Math.random() * 14) + 1); // 1 - 15
 
-        // Get experience, check level up
+        // Get experience
         userExp += Math.floor((Math.random() * 249) + 1); // 1 - 250
-        let nextLevel = ((userLvl + 1) * 250);
-        if (userExp >= nextLevel) { 
+        Bot.store.users.exp.set(message.author.id, userExp);
 
-            message.react("852713593191006208"); // Custom emoji
+        // Check level up
+        let nextLevel = ((userLvl + 1) * 500);
+        if (userExp >= nextLevel) { 
+            message.react(Bot.config.customEmojis.PogU);
+            Bot.store.users.lvl.set(message.author.id, userLvl + 1);
         }
+
+        // Add to cooldown
+        let minute = new Date(); minute.setUTCSeconds(minute.getUTCSeconds() + 60);
+        Cooldown.set(message.author.id, +minute);
     }
 
 }
