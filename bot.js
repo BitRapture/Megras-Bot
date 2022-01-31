@@ -75,12 +75,14 @@ Bot.client.on("messageCreate", (message) => {
     console.log(`${message.author.username}: ${message.content}`);
 
     // Streaming handling
-    Bot.streams.forEach((stream) => {
-        stream.Run(Bot, message);
-    });
+    if (!message.content.startsWith(Bot.config.prefix)) { 
+        Bot.streams.forEach((stream) => {
+            stream.Run(Bot, message);
+        });
+        return;
+    }
 
     // Command handling
-    if (!message.content.startsWith(Bot.config.prefix)) { return; }
     let args = message.content.slice(Bot.config.prefix.length).split(" ");
     let command = args.shift().toLowerCase();
     if (!Bot.commands.has(command)) { return; }
