@@ -69,12 +69,12 @@ module.exports = {
                 Bot.store.alliances.lvl.set(alyName, 1);
                 Bot.store.alliances.exp.set(alyName, 0);
 
-                embed = Embed.SimpleEmbed("Alliance created successfully", `You're now the owner of ${alyName}`);
+                embed = Embed.SimpleEmbed("Alliance created successfully", `You're now the owner of \`${alyName}\``);
             break;
 
             case "disband":
                 if (!Bot.store.alliances.owner.has(alyName)) { embed = Embed.Error("Alliance doesn't exist"); break; } 
-                if (message.author.id !== Bot.store.alliances.owner.get(alyName)) { embed = Embed.Error(`You don't own ${alyName}`); break; }
+                if (message.author.id !== Bot.store.alliances.owner.get(alyName)) { embed = Embed.Error(`You don't own \`${alyName}\``); break; }
 
                 let list = Bot.store.alliances.list.get(alyName);
                 let mult = Bot.store.alliances.mult.get(alyName);
