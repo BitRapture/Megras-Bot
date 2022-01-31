@@ -7,7 +7,7 @@ module.exports = {
     examples : [
         { name: "Get specific page", value: "`$help <page>`" },
         { name: "Get specific command", value: "`$help <command>`" },
-        { name: "Get first page", value: "`$help 1` or `$help`" } // todo: replace placeholder prefix with current prefix
+        { name: "Get first page", value: "`$help 1` or `$help`" }
     ],
     visible : true,
 
