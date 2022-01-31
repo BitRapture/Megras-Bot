@@ -19,7 +19,7 @@ module.exports = {
         let nextLevel = Math.floor(((userLvl + 1) ** 1.4) * 500), prevLevel = (userLvl === 0 ? 0 : Math.floor(((userLvl) ** 1.4) * 500));
 
         // Convert to progress bar
-        let progress = `**${userLvl} ` + "".padStart(Math.ceil(((userExp - prevLevel) / (nextLevel - prevLevel)) * 20), "▮").padEnd(20, "▯") + ` ${userLvl + 1}**`;
+        let progress = `**${userLvl} ` + "".padStart(Math.ceil(((userExp - prevLevel) / (nextLevel - prevLevel)) * 17), "▮").padEnd(17, "▯") + ` ${userLvl + 1}**`;
         let fields = [{ name: "Current EXP", value: `${userExp}`, inline: true }, { name: "EXP Required", value: `${nextLevel}`, inline: true }];
 
         message.reply({ embeds: [Embed.FieldEmbed(`${nickname}'s level profile`, progress, fields)] });
