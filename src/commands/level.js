@@ -17,8 +17,8 @@ module.exports = {
         let userLvl = Bot.store.users.lvl.get(member.id); userLvl = (userLvl === undefined ? 0 : userLvl);
         let nextLevel = ((userLvl + 1) * 500);
 
-        let progress = `**${userLvl} ` + "".padStart(Math.ceil((userLvl / nextLevel) * 10), "|").padEnd(10, "-") + ` ${nextLevel}**`;
-        let fields = [{ name: "Current EXP", value: `${userExp}` }, { name: "EXP Required", value: `${nextLevel}` }];
+        let progress = `**${userLvl} ` + "".padStart(Math.ceil((userLvl / nextLevel) * 10), "|").padEnd(10, "-") + ` ${userLvl + 1}**`;
+        let fields = [{ name: "Current EXP", value: `${userExp}`, inline: true }, { name: "EXP Required", value: `${nextLevel}`, inline: true }];
 
         message.reply({ embeds: [Embed.FieldEmbed(`${nickname}'s level profile`, progress, fields)] });
     }
