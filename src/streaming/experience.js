@@ -18,8 +18,8 @@ module.exports = {
         // Check level up
         let nextLevel = ((userLvl + 1) * 500);
         if (userExp >= nextLevel) { 
+            Bot.store.users.lvl.set(message.author.id, ++userLvl);
             message.react(Bot.config.customEmojis.PogU);
-            Bot.store.users.lvl.set(message.author.id, userLvl + 1);
         }
 
         // Add to cooldown
