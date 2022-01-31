@@ -39,6 +39,12 @@ CMDFiles.forEach((file) => {
     cmd.examples.forEach((e, i, example) => { example[i].value = example[i].value.replaceAll("$", Bot.config.prefix); });
 });
 
+// Streaming manager initialization
+const streamFiles = FS.readdirSync("./src/streaming").filter(i => i.endsWith(".js"));
+Bot.streams = [];
+streamFiles.forEach((file) => { Bot.streams.push(require(`./src/streaming/${file}`)); });
+
+
 // API keys initialization
 Bot.keys = require("./src/secret/keys.json");
 
@@ -69,6 +75,9 @@ Bot.client.on("messageCreate", (message) => {
     console.log(`${message.author.username}: ${message.content}`);
 
     // Streaming handling
+    Bot.streams.forEach((stream) => {
+        stream.Run(Bot, message);
+    });
 
     // Command handling
     if (!message.content.startsWith(Bot.config.prefix)) { return; }
