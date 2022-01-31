@@ -6,7 +6,8 @@ module.exports = {
 	longdesc : "Create, disband, edit, join or leave an alliance. It costs `100MAGS` to form an alliance, and `5MAGS` to join an alliance.\
     Disbanding an alliance will give you a payout based on its level, multiplier and member count (Members are entitled to some of this too)",
 	examples : [
-		{ name: "Display alliance profile", value: "`$alliance`" },
+		{ name: "Display your alliance profile", value: "`$alliance`" },
+		{ name: "Display an alliance profile", value: "`$alliance view <name>`" },
 		{ name: "Create an alliance", value: "`$alliance create <name>`" },
 		{ name: "Disband an alliance", value: "`$alliance disband <name>`" },
 		{ name: "Join an alliance", value: "`$alliance join <name>`" },
@@ -15,27 +16,30 @@ module.exports = {
 	],
 	visible : true,
 
+    DisplayProfile(Bot, userAly) {
+        let embed;
+        if (userAly === "") { embed = Embed.SimpleEmbed("Aliance profile: no alliance", `Join an alliance with \`${Bot.config.prefix}alliance join <name>\``); }
+        else { 
+            let fields = [
+                { name: "Member count", value: `${Bot.store.alliances.list.get(userAly).length}`, inline: true },
+                { name: "Level", value: `${Bot.store.alliances.lvl.get(userAly)}`, inline: true },
+                { name: "Experience", value: `${Bot.store.alliances.exp.get(userAly)}`, inline: true },
+                { name: "Multiplier", value: `${Bot.store.alliances.mult.get(userAly)}`, inline: true },
+                { name: "Owner?", value: `${(message.author.id === Bot.store.alliances.owner.get(userAly) ? "True" : "False")}`, inline: true }
+            ]
+            embed = Embed.FieldEmbed(`Alliance profile: ${userAly}`, `Information for the alliance, \`${userAly}\``, fields); 
+        }
+        return embed;
+    },
+
     Run(Bot, args, message) {
         let embed = Embed.Malformed();
         let userAly = Bot.store.users.aly.get(message.author.id); userAly = (userAly === undefined ? "" : userAly);
         let userBal = Bot.store.users.bal.get(message.author.id); userBal = (userBal === undefined ? 0 : userBal);
 
         // Display alliance profile
-        if (args.length < 1) {
-            if (userAly === "") { embed = Embed.SimpleEmbed("Aliance profile: no alliance", `Join an alliance with \`${Bot.config.prefix}alliance join <name>\``); }
-            else { 
-                let fields = [
-                    { name: "Member count", value: `${Bot.store.alliances.list.get(userAly).length}`, inline: true },
-                    { name: "Level", value: `${Bot.store.alliances.lvl.get(userAly)}`, inline: true },
-                    { name: "Experience", value: `${Bot.store.alliances.exp.get(userAly)}`, inline: true },
-                    { name: "Multiplier", value: `${Bot.store.alliances.mult.get(userAly)}`, inline: true },
-                    { name: "Owner?", value: `${(message.author.id === Bot.store.alliances.owner.get(userAly) ? "True" : "False")}`, inline: true }
-                ]
-                embed = Embed.FieldEmbed(`Alliance profile: ${userAly}`, `Information for the alliance, \`${userAly}\``, fields); 
-            }
-            message.reply({ embeds: [embed] });
-            return;
-        } else if (args.length < 2) { message.reply({ embeds: [embed] }); return; } // Malformed
+        if (args.length < 1) { message.reply({ embeds: [this.DisplayProfile(Bot, userAly)] }); return; } 
+        else if (args.length < 2) { message.reply({ embeds: [embed] }); return; } // Malformed
 
         let alyName = args[1].replace(/[^a-zA-Z0-9_\- ]/g, "");
         if (alyName.length < 3) { embed = Embed.Error("An alliance name must be at least 3 characters long"); return; }
@@ -43,6 +47,12 @@ module.exports = {
 
         switch (args[0].toLowerCase())
         {
+            case "view":
+                if (!Bot.store.alliances.owner.has(alyName)) { embed = Embed.Error("Alliance doesn't exist"); break; } 
+                
+                embed = this.DisplayProfile(Bot, alyName);
+            break;
+
             case "create":
                 if (userAly !== "") { embed = Embed.Error("Already in an alliance, leave or disband"); break; }
                 if (userBal < 100) { embed = Embed.Error("Insufficient funds, `100MAGS` required"); break; }
