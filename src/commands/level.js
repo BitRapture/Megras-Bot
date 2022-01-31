@@ -14,7 +14,7 @@ module.exports = {
         let nickname = (member.nickname === null ? member.user.username : member.nickname);
 
         let userExp = Bot.store.users.exp.get(member.id); userExp = (userExp === undefined ? 0 : userExp);
-        let userLvl = Bot.store.users.lvl.get(member.id); userLvl = (userExp === undefined ? 0 : userLvl);
+        let userLvl = Bot.store.users.lvl.get(member.id); userLvl = (userLvl === undefined ? 0 : userLvl);
         let nextLevel = ((userLvl + 1) * 500);
 
         let progress = `**${userLvl} ` + "".padStart(Math.ceil((userLvl / nextLevel) * 10), "|").padEnd(10, "-") + ` ${nextLevel}**`;

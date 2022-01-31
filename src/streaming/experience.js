@@ -6,7 +6,7 @@ module.exports = {
     Run(Bot, message) {
         if (--expCountDown > 0 || Cooldown.has(message.author.id) && Cooldown.get(message.author.id) > +new Date()) { return; }
         let userExp = Bot.store.users.exp.get(message.author.id); userExp = (userExp === undefined ? 0 : userExp);
-        let userLvl = Bot.store.users.lvl.get(message.author.id); userLvl = (userExp === undefined ? 0 : userLvl);
+        let userLvl = Bot.store.users.lvl.get(message.author.id); userLvl = (userLvl === undefined ? 0 : userLvl);
 
         // Calculate next experience drop
         expCountDown = Math.floor((Math.random() * 5) + 1); // 1 - 6
