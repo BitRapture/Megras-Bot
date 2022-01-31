@@ -16,6 +16,7 @@ Bot.store = {
     users : {
         inv : new Enmap({ name: "userInv", fetchAll: false, dataDir: "./store" }),      // Inventory
         lvl : new Enmap({ name: "userLvl", fetchAll: false, dataDir: "./store" }),      // Level
+        exp : new Enmap({ name: "userLvl", fetchAll: false, dataDir: "./store" }),      // Experience
         bal : new Enmap({ name: "userBal", fetchAll: false, dataDir: "./store" }),      // Balance
         aly : new Enmap({ name: "userAly", fetchAll: false, dataDir: "./store" })       // Alliance 
     },
