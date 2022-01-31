@@ -18,7 +18,7 @@ module.exports = {
         let nextLevel = ((userLvl + 1) * 500);
 
         let progress = `**${userLvl} ` + "".padStart(Math.ceil((userLvl / nextLevel) * 10), "|").padEnd(10, "-") + ` ${nextLevel}**`;
-        let fields = [{ name: "Current EXP", value: userExp }, { name: "EXP Required", value: nextLevel }];
+        let fields = [{ name: "Current EXP", value: `${userExp}` }, { name: "EXP Required", value: `${nextLevel}` }];
 
         message.reply({ embeds: [Embed.FieldEmbed(`${nickname}'s level profile`, progress, fields)] });
     }
