@@ -20,7 +20,7 @@ module.exports = {
         Bot.store.users.exp.set(message.author.id, userExp);
 
         // Check level up
-        let nextLevel = ((userLvl + 1) * 500);
+        let nextLevel = Math.floor(((userLvl + 1) ** 1.2) * 500);
         if (userExp >= nextLevel) { 
             Bot.store.users.lvl.set(message.author.id, (userLvl + 1));
             message.react(Bot.config.customEmojis.PogU);
