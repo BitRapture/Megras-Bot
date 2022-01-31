@@ -16,7 +16,7 @@ module.exports = {
         // Get information
         let userExp = Bot.store.users.exp.get(member.id); userExp = (userExp === undefined ? 0 : userExp);
         let userLvl = Bot.store.users.lvl.get(member.id); userLvl = (userLvl === undefined ? 0 : userLvl);
-        let nextLevel = Math.floor(((userLvl + 1) ** 1.2) * 500), prevLevel = (userLvl == 0 ? 0 : Math.floor(((userLvl) ** 1.2) * 500));
+        let nextLevel = Math.floor(((userLvl + 1) ** 1.2) * 500), prevLevel = (userLvl === 0 ? 0 : Math.floor(((userLvl) ** 1.2) * 500));
 
         // Convert to progress bar
         let progress = `**${userLvl} ` + "".padStart(Math.ceil(((userExp - prevLevel) / (nextLevel - prevLevel)) * 20), "▮").padEnd(20, "▯") + ` ${userLvl + 1}**`;

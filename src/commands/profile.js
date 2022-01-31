@@ -32,7 +32,8 @@ module.exports = {
                     CTX.globalCompositeOperation = "luminosity";
                     CTX.drawImage(profile, 20, 20, 220, 220);
                     CTX.restore();
-
+                    
+                    // TODO add alliance profile overlays!
                     loadImage("./src/media/profile overlay.png").then((overlay) => {
                         CTX.drawImage(overlay, 0, 0, 640, 300);
 
