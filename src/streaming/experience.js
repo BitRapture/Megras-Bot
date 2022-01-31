@@ -9,7 +9,7 @@ module.exports = {
         let userLvl = Bot.store.users.lvl.get(message.author.id); userLvl = (userExp === undefined ? 0 : userLvl);
 
         // Calculate next experience drop
-        expCountDown = Math.floor((Math.random() * 14) + 1); // 1 - 15
+        expCountDown = Math.floor((Math.random() * 5) + 1); // 1 - 6
 
         // Get experience
         userExp += Math.floor((Math.random() * 249) + 1); // 1 - 250
