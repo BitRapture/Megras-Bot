@@ -22,6 +22,11 @@ module.exports = {
         // Check level up
         let nextLevel = Math.floor(((userLvl + 1) ** 1.2) * 500);
         if (userExp >= nextLevel) { 
+            // Increase balance
+            let bal = Bot.store.users.bal.get(message.author.id); bal = (bal === undefined ? 0 : bal);
+            Bot.store.users.bal.set(message.author.id, bal + Math.floor((Math.random() * 9) + 1)); // 1 - 10
+
+            // Increase level
             Bot.store.users.lvl.set(message.author.id, (userLvl + 1));
             message.react(Bot.config.customEmojis.PogU);
         }
