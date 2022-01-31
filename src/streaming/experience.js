@@ -20,7 +20,7 @@ module.exports = {
         Bot.store.users.exp.set(message.author.id, userExp);
 
         // Check level up
-        let nextLevel = Math.floor(((userLvl + 1) ** 1.2) * 500);
+        let nextLevel = Math.floor(((userLvl + 1) ** 1.6) * 500);
         if (userExp >= nextLevel) { 
             // Increase balance
             let bal = Bot.store.users.bal.get(message.author.id); bal = (bal === undefined ? 0 : bal);
