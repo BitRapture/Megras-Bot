@@ -40,7 +40,7 @@ CMDFiles.forEach((file) => {
     if (cmd.visible) Bot.commandsList.push({ name: cmd.name, desc: cmd.desc }); 
     cmd.examples.forEach((e, i, example) => { example[i].value = example[i].value.replaceAll("$", Bot.config.prefix); });
 });
-CMDAliases.aliases.forEach((alias) => { Bot.commands.set(alias.alias, Bot.commands.get(alias.cmd).cmd); });
+CMDAliases.aliases.forEach((alias) => { Bot.commands.set(alias.alias, Bot.commands.get(alias.cmd)); });
 
 // Streaming manager initialization
 const streamFiles = FS.readdirSync("./src/streaming").filter(i => i.endsWith(".js"));
