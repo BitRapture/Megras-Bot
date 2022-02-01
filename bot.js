@@ -32,6 +32,7 @@ Bot.store = {
 // Command manager initialization
 const FS = require("fs");
 const CMDFiles = FS.readdirSync("./src/commands").filter(i => i.endsWith(".js"));
+const CMDAliases = require("./src/aliases.json");
 Bot.commands = new Map(); Bot.commandsList = [];
 CMDFiles.forEach((file) => { 
     const cmd = require(`./src/commands/${file}`); 
@@ -39,6 +40,7 @@ CMDFiles.forEach((file) => {
     if (cmd.visible) Bot.commandsList.push({ name: cmd.name, desc: cmd.desc }); 
     cmd.examples.forEach((e, i, example) => { example[i].value = example[i].value.replaceAll("$", Bot.config.prefix); });
 });
+CMDAliases.aliases.forEach((alias) => { Bot.commands.set(alias.alias, Bot.commands.get(alias.cmd).cmd); });
 
 // Streaming manager initialization
 const streamFiles = FS.readdirSync("./src/streaming").filter(i => i.endsWith(".js"));
