@@ -28,7 +28,7 @@ module.exports = {
 
             // Increase level
             Bot.store.users.lvl.set(message.author.id, (userLvl + 1));
-            message.react(Bot.config.customEmojis.PogU);
+            message.react(Bot.config.customEmojis.LevelUp);
         }
     }
 
