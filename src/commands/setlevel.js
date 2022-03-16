@@ -29,7 +29,7 @@ module.exports = {
         embed = Embed.Error("Level must be greater than -1");
         if (level < 0) { message.reply({ embeds: [embed] }); return; }
         
-        Bot.store.users.exp.set(message.author.id, Math.floor(((level) << 2) * 650));
+        Bot.store.users.exp.set(message.author.id, Math.floor(((level) * 8) * 650));
         Bot.store.users.lvl.set(message.author.id, level);
     }
 
