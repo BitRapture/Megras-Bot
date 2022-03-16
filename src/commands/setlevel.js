@@ -15,7 +15,7 @@ module.exports = {
         if (!Bot.store.server.botMods.has(message.guildId)) { return; }
         let isMod = false;
         Bot.store.server.botMods.get(message.guildId).forEach((modId) => { 
-            if (modId === message.author.id) { isMod = true; break; }
+            if (modId === message.author.id) { isMod = true; }
         })
         if (!isMod) { return; }
 
