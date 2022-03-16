@@ -37,6 +37,9 @@ Bot.store = {
 Bot.config.botMods.forEach((server) => {
     Bot.store.server.botMods.ensure(server.id, server.mods);
 });
+Bot.config.botMods.forEach((server) => {
+    Bot.store.server.roleLevels.ensure(server, []);
+});
 
 // Command manager initialization
 const FS = require("fs");

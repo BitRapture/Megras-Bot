@@ -29,6 +29,9 @@ module.exports = {
             // Increase level
             Bot.store.users.lvl.set(message.author.id, (userLvl + 1));
             message.react(Bot.config.customEmojis.LevelUp);
+
+            // Add server reward role
+            
         }
     }
 
