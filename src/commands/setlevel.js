@@ -23,7 +23,7 @@ module.exports = {
         if (args.length < 2) { message.reply({ embeds: [embed] }); return; }
 
         embed = Embed.Error("User isn't in this guild");
-        if (!essage.guild.members.cache().has(`${args[0]}`)) { message.reply({ embeds: [embed] }); return; }
+        if (!message.guild.members.cache().has(`${args[0]}`)) { message.reply({ embeds: [embed] }); return; }
 
         let level = ParseInt(args[1]);
         embed = Embed.Error("Level must be greater than -1");
