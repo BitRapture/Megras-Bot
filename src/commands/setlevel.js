@@ -29,8 +29,11 @@ module.exports = {
         embed = Embed.Error("Level must be greater than -1");
         if (level < 0) { message.reply({ embeds: [embed] }); return; }
         
+        embed = Embed.SimpleEmbed("Level set successfully", `Set user to level ${level}`);
         Bot.store.users.exp.set(`${args[0]}`, Math.floor(((level) ** 3) * 650));
         Bot.store.users.lvl.set(`${args[0]}`, level);
+
+        message.reply({ embeds: [embed] });
     }
 
 }
