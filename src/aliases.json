@@ -2,6 +2,7 @@
     "aliases": [
         { "alias": "rank", "cmd": "level" },
         { "alias": "lvl", "cmd": "level" },
-        { "alias": "aly", "cmd": "alliance" }
+        { "alias": "aly", "cmd": "alliance" },
+        { "alias": "setlvl", "cmd": "setlevel" }
     ]
 }

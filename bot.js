@@ -26,8 +26,17 @@ Bot.store = {
         lvl : new Enmap({ name: "alyLvl", fetchAll: false, dataDir: "./store" }),       // Level of alliance
         exp : new Enmap({ name: "alyExp", fetchAll: false, dataDir: "./store" }),       // Experience of alliance
         owner : new Enmap({ name: "alyOwner", fetchAll: false, dataDir: "./store" })    // Owner of alliance
+    },
+    server : {
+        roleLevels : new Enmap({ name: "serverRoleLevels", fetchAll: false, dataDir: "./store" }), // Role level rewards
+        botMods : new Enmap({ name: "serverBotMods", fetchAll: false, dataDir: "./store" }), // Server bot mods
     }
 };
+
+// Ensure enmap data
+Bot.config.botMods.forEach((server) => {
+    Bot.store.server.botMods.ensure(server.id, server.mods);
+});
 
 // Command manager initialization
 const FS = require("fs");
