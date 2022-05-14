@@ -1,6 +1,6 @@
 
 module.exports = {
     GetExperience(_level) {
-        return Math.ceil((_level ** 1.7 * 4) * 500);
+        return Math.ceil(((_level) * (_level * 1024) * (_level * 0.65)) + 500);
     }
 }
