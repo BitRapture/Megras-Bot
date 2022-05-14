@@ -29,6 +29,7 @@ Bot.store = {
     },
     server : {
         botMods : new Enmap({ name: "serverBotMods", fetchAll: false, dataDir: "./store" }), // Server bot mods
+        roleLevels : new Enmap({ name: "roleLevels", fetchAll: false, dataDir: "./store" }) // Server role levelling
     }
 };
 

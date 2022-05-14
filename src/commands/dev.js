@@ -1,3 +1,4 @@
+const Config = require("../config.json");
 
 module.exports = {
     name : "dev",
@@ -28,6 +29,24 @@ module.exports = {
                 Bot.store.users.exp.forEach((v, k) => {Bot.store.users.exp.delete(k)});
                 Bot.store.users.lvl.forEach((v, k) => {Bot.store.users.lvl.delete(k)});
                 message.reply("Deleted everything");
+            break;
+            case "loadrolelevels":
+            case "loadrolelvls":
+            case "lrl":
+                Config.roleLevels.forEach((server) => {
+                    Bot.store.server.roleLevels.set(server.id, []);
+                    server.pair.forEach((pair) => {
+                        let rID = Bot.client.guilds.cache.get(server.id).roles.cache.find((role) => { role.name === pair.role }).id;
+                        if (rID !== undefined)
+                        {
+                            Bot.store.server.roleLevels.push(server.id, {
+                                id : rID,
+                                lvl : pair.level
+                        });
+                        }
+                    });
+                });
+                message.reply("Updated and added to cache");
             break;
         }
     }
