@@ -41,6 +41,12 @@
 				{ "role": "The gamer", "level": 90 },
 				{ "role": "The juicer", "level": 100 }
 			]
+		},
+		{
+			"id": "799786070316285952",
+			"pairs": [
+				{ "role": "Untitled_No_Life", "level": 10  }
+			]
 		}
 	]
 }
