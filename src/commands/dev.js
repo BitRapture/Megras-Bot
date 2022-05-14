@@ -35,7 +35,7 @@ module.exports = {
                 Bot.config.roleLevels.forEach((server) => {
                     Bot.store.server.roleLevels.set(server.id, []);
                     server.pairs.forEach((pair) => {
-                        let rID = Bot.client.guilds.cache.get(server.id).roles.cache.find((role) => { role.name === pair.role }).id;
+                        let rID = Bot.client.guilds.cache.get(server.id).roles.cache.find((role) => { return role.name === pair.role; }).id;
                         if (rID !== undefined)
                         {
                             Bot.store.server.roleLevels.push(server.id, {
