@@ -1,5 +1,8 @@
+const EXP = require("../templates/exp.js");
+
 const Cooldown = new Map(); // Todo, add a cleanup routine that checks old cooldowns and removes them from memory
 var expCountDown = 2;
+
 
 module.exports = {
 
@@ -20,7 +23,7 @@ module.exports = {
         Bot.store.users.exp.set(message.author.id, userExp);
 
         // Check level up
-        let nextLevel = Math.floor(((userLvl + 1) ** 3) * 650);
+        let nextLevel = EXP.GetExperience(userLvl + 1);
         if (userExp >= nextLevel) { 
             // Increase balance
             let bal = Bot.store.users.bal.get(message.author.id); bal = (bal === undefined ? 0 : bal);
