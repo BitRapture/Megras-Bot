@@ -1,4 +1,3 @@
-const Config = require("../config.json");
 
 module.exports = {
     name : "dev",
@@ -33,9 +32,9 @@ module.exports = {
             case "loadrolelevels":
             case "loadrolelvls":
             case "lrl":
-                Config.roleLevels.forEach((server) => {
+                Bot.config.roleLevels.forEach((server) => {
                     Bot.store.server.roleLevels.set(server.id, []);
-                    server.pair.forEach((pair) => {
+                    server.pairs.forEach((pair) => {
                         let rID = Bot.client.guilds.cache.get(server.id).roles.cache.find((role) => { role.name === pair.role }).id;
                         if (rID !== undefined)
                         {
