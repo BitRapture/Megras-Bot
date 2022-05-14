@@ -26,6 +26,7 @@ module.exports = {
         if (!message.guild.members.cache.has(`${args[0]}`)) { message.reply({ embeds: [embed] }); return; }
 
         let level = parseInt(`${args[1]}`);
+        console.log(args[1]);
         embed = Embed.Error("Level must be greater than -1");
         if (level < 0 || isNaN(level)) { message.reply({ embeds: [embed] }); return; }
         
