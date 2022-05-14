@@ -34,7 +34,16 @@ module.exports = {
             message.react(Bot.config.customEmojis.LevelUp);
 
             // Add server reward role
-            
+            let shRoles = Bot.store.server.roleLevels.has(message.guildId);
+            if (shRoles)
+            {  
+                let rServer = Bot.store.server.roleLevels.get(message.guildId);
+                let role = rServer.find((pair) => { pair.lvl === (userLvl + 1) });
+                if (role !== undefined)
+                {
+                    message.member.roles.add(role.id, `User has levelled up to ${userLvl + 1}`);
+                }
+            }
         }
     }
 

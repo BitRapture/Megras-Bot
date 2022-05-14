@@ -28,8 +28,8 @@ Bot.store = {
         owner : new Enmap({ name: "alyOwner", fetchAll: false, dataDir: "./store" })    // Owner of alliance
     },
     server : {
-        botMods : new Enmap({ name: "serverBotMods", fetchAll: false, dataDir: "./store" }), // Server bot mods
-        roleLevels : new Enmap({ name: "roleLevels", fetchAll: false, dataDir: "./store" }) // Server role levelling
+        botMods : new Enmap({ name: "serverBotMods", fetchAll: true, dataDir: "./store" }), // Server bot mods
+        roleLevels : new Enmap({ name: "roleLevels", fetchAll: true, dataDir: "./store" }) // Server role levelling
     }
 };
 

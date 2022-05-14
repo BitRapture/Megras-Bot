@@ -32,6 +32,7 @@ module.exports = {
             case "loadrolelevels":
             case "loadrolelvls":
             case "lrl":
+                // Load level roles from config json to cache
                 Bot.config.roleLevels.forEach((server) => {
                     Bot.store.server.roleLevels.set(server.id, []);
                     server.pairs.forEach((pair) => {
@@ -46,6 +47,22 @@ module.exports = {
                     });
                 });
                 message.reply("Updated and added to cache");
+            break;
+            case "givelvlroles":
+            case "glr":
+                // Add all server level roles
+                let member = message.mentions.members.first();
+                let userLvl = Bot.store.users.lvl.get(member.id); userLvl = (userLvl === undefined ? 0 : userLvl);
+                let shRoles = Bot.store.server.roleLevels.has(message.guildId);
+                if (shRoles)
+                {  
+                    let rServer = Bot.store.server.roleLevels.get(message.guildId);
+                    rServer.forEach((pair) => {
+                        if (pair.lvl <= userLvl) {
+                            member.roles.add(role.id, `User has been given their role rewards`);
+                        }
+                    });
+                }
             break;
         }
     }
