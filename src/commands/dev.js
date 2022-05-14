@@ -59,7 +59,7 @@ module.exports = {
                     let rServer = Bot.store.server.roleLevels.get(message.guildId);
                     rServer.forEach((pair) => {
                         if (pair.lvl <= userLvl) {
-                            member.roles.add(role.id, `User has been given their role rewards`);
+                            member.roles.add(pair.id, `User has been given their role rewards`);
                         }
                     });
                 }
