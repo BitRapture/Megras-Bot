@@ -19,6 +19,12 @@ module.exports = {
         let userLvl = Bot.store.users.lvl.get(member.id); userLvl = (userLvl === undefined ? 0 : userLvl);
         let nextLevel = EXP.GetExperience(userLvl + 1), prevLevel = (userLvl === 0 ? 0 : EXP.GetExperience(userLvl));
 
+        // Gabouli countermeasure
+        if (nextLevel - userExp < 0) {
+            userExp = EXP.GetExperience(userLvl);
+            Bot.store.users.exp.set(member.id, userExp);
+        }
+
         // Convert to progress bar
         let progress = `**${userLvl} ` + "".padStart(Math.ceil(((userExp - prevLevel) / (nextLevel - prevLevel)) * 17), "▮").padEnd(17, "▯") + ` ${userLvl + 1}**`;
         let fields = [
