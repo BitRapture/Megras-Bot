@@ -30,7 +30,8 @@ module.exports = {
             Bot.store.users.bal.set(message.author.id, bal + Math.floor((Math.random() * 9) + 1)); // 1 - 10
 
             // Increase level
-            Bot.store.users.lvl.set(message.author.id, (userLvl + 1));
+            let newLevel = userLvl + 1;
+            Bot.store.users.lvl.set(message.author.id, newLevel);
             message.react(Bot.config.customEmojis.LevelUp);
 
             // Add server reward role
@@ -38,10 +39,10 @@ module.exports = {
             if (shRoles)
             {  
                 let rServer = Bot.store.server.roleLevels.get(message.guildId);
-                let role = rServer.find((pair) => { pair.lvl === (userLvl + 1) });
+                let role = rServer.find((pair) => { pair.lvl === newLevel });
                 if (role !== undefined)
                 {
-                    message.member.roles.add(role.id, `User has levelled up to ${userLvl + 1}`);
+                    message.member.roles.add(role.id, `User has levelled up to ${newLevel}`);
                 }
             }
         }
