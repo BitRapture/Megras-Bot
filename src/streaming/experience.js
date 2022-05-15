@@ -39,7 +39,7 @@ module.exports = {
             if (shRoles)
             {  
                 let rServer = Bot.store.server.roleLevels.get(message.guildId);
-                let role = rServer.find((pair) => { pair.lvl === newLevel });
+                let role = rServer.find((pair) => { return pair.lvl === newLevel; });
                 if (role !== undefined)
                 {
                     message.member.roles.add(role.id, `User has levelled up to ${newLevel}`);
