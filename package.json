@@ -1,26 +1,19 @@
 {
-  "name": "megras",
-  "version": "1.0.0",
-  "description": "Discord adventure and puzzle bot",
-  "main": "bot.js",
+  "name": "megras-bot",
+  "version": "2.0.0",
+  "description": "Entertainment and adventure bot",
+  "main": "index.js",
   "scripts": {
-    "test": "node bot.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BitRapture/Megras-Bot.git"
   },
-  "author": "BitRapture",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BitRapture/Megras-Bot/issues"
   },
-  "homepage": "https://github.com/BitRapture/Megras-Bot#readme",
-  "dependencies": {
-    "@discordjs/rest": "^0.3.0",
-    "canvas": "^2.9.0",
-    "discord-api-types": "^0.26.1",
-    "discord.js": "^13.6.0",
-    "enmap": "^5.8.7"
-  }
+  "homepage": "https://github.com/BitRapture/Megras-Bot#readme"
 }

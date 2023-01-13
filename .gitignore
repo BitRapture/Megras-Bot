@@ -1,6 +1,7 @@
-src/secret/
 node_modules/
 package-lock.json
 .env
 store/
+src/private/tokens.json
+
 
