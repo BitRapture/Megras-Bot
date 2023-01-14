@@ -20,7 +20,7 @@ module.exports = {
         let deltaNextExp = nextLevelExp - currentLevelExp;
         let deltaExp = Math.ceil((deltaCurrentExp / deltaNextExp) * 6);
 
-        let progressBar = "".padStart(deltaExp, "X").padEnd(6 - deltaExp, "_");
+        let progressBar = "".padStart(deltaExp, "X").padEnd(6, "_");
 
         let embed = Bot.Templates.Embeds.Simple(`${memberNickname}'s rank profile`, `${levelInfo.level} ${progressBar} ${levelInfo.level + 1}`, [
             { name: "Current EXP", value: `${levelInfo.experience}`, inline: true },
