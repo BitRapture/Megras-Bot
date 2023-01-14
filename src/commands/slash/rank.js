@@ -18,7 +18,7 @@ module.exports = {
         let expRequired = nextLevelExp - levelInfo.experience;
         let deltaCurrentExp = levelInfo.experience - currentLevelExp;
         let deltaNextExp = nextLevelExp - currentLevelExp;
-        let deltaExp = Math.ceil((deltaNextExp / deltaCurrentExp) * 6);
+        let deltaExp = Math.ceil((deltaCurrentExp / deltaNextExp) * 6);
 
         let progressBar = "".padStart(deltaExp, "X").padEnd(6 - deltaExp, "_");
 
