@@ -1,6 +1,6 @@
 const FS = require("node:fs");
 const { Client, Events, GatewayIntentBits, REST, Routes } = require("discord.js");
-const Enmap = require("enamp");
+const Enmap = require("enmap");
 // Create structure
 const Bot = {
     Client : new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers] }),
