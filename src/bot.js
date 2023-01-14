@@ -1,5 +1,6 @@
 const FS = require("node:fs");
 const { Client, Events, GatewayIntentBits, REST, Routes } = require("discord.js");
+const Enmap = require("enamp");
 // Create structure
 const Bot = {
     Client : new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers] }),
@@ -9,7 +10,17 @@ const Bot = {
     },
     Commands : {
         Plain : new Map(),
-        Slash : new Map()
+        Slash : new Map(),
+        Monitor : []
+    },
+    Store : {
+        Users : {
+            Rank : new Enmap({ name: "userRank", fetchAll: false, dataDir: "./private/store" })
+        }
+    },
+    Templates : {
+        Levels : require("./templates/user-levelling.js"),
+        Embeds : require("./templates/embeds.js")
     }
 }
 const botName = Bot.Config.General.botName;
@@ -38,6 +49,15 @@ allCommandFiles.forEach(commandFile => {
     }
 });
 
+// Save monitoring scripts to bot struct
+const monitorScriptsPath = "./commands/monitor";
+var monitorScriptFiles = FS.readdirSync(monitorScriptsPath).filter(file => file.endsWith(".js"));
+
+monitorScriptFiles.forEach(monitorFile => {
+    const monitorScript = require(`${monitorScriptsPath}${monitorFile}`);
+    if ("execute" in monitorScript) Bot.Commands.Monitor.push(monitorScript);
+})
+
 // Sync slash commands
 const serializedSlashCommands = [];
 Bot.Commands.Slash.forEach(command => {
@@ -63,6 +83,7 @@ Bot.Client.on("ready", () => {
     console.log(`${botName} > Logged in as: ${Bot.Client.user.tag}`);
     console.log(`${botName} > Loaded ${Bot.Commands.Slash.size} slash commands`);
     console.log(`${botName} > Loaded ${Bot.Commands.Plain.size} plain commands`);
+    console.log(`${botName} > Loaded ${Bot.Commands.Monitor.length} monitoring commands`);
 });
 
 // Slash command interaction handler
@@ -74,6 +95,28 @@ Bot.Client.on(Events.InteractionCreate, async interaction => {
 
     try {
         await command.execute(Bot, interaction);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+// Plain command interaction handler
+Bot.Client.on(Events.MessageCreate, async message => {
+    if (message.author.bot) return;
+    let args = message.content.slice(Bot.Config.General.prefix.length).split(" ");
+    let commandName = args.shift().toLowerCase();
+    
+    // Run through monitoring
+    Bot.Commands.Monitor.forEach(monitor => {
+        monitor.execute(Bot, message, args);
+    });
+
+    // Try and get relevant command
+    const command = Bot.Commands.Plain.get(commandName);
+    if (!command) return;
+
+    try {
+        await command.execute(Bot, message, args);
     } catch (err) {
         console.log(err);
     }
