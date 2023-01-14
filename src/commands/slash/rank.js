@@ -13,7 +13,7 @@ module.exports = {
         let levelInfo = Bot.Templates.Levels.GetUserInfo(member.id, Bot.Store.Users.Rank);
 
         let embed = Bot.Templates.Embeds.Simple(`${memberNickname}'s rank profile`, `Currently level ${levelInfo.level}`, [
-            { name: "Current EXP", value: levelInfo.experience, inline: true }
+            { name: "Current EXP", value: `${levelInfo.experience}`, inline: true }
         ]);
 
         await interaction.reply(embed);
