@@ -28,10 +28,15 @@ module.exports = {
         if (version < LevelSchemaVersion) return this.GetUserLevelSchema(version + 1, schema);
         return schema;
     },
+    EnsureUserSchema(schema) {
+        if (isNaN(schema.level)) schema.level = 0;
+        if (isNaN(schema.experience)) schema.experience = this.GetLevelExperience(schema.level);
+    },
     GetUserInfo(memberId, levelStore) {
         let info = levelStore.get(memberId);
         if (!info) info = this.GetUserLevelSchema(0);
         else if (info.version != LevelSchemaVersion) info = this.GetUserLevelSchema(info.version, info);
+        this.EnsureUserSchema(info);
         return info;
     }
 }
