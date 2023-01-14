@@ -4,13 +4,15 @@ const { Client, Events, GatewayIntentBits, REST, Routes } = require("discord.js"
 const Bot = {
     Client : new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers] }),
     Config : {
-        Tokens : require("./private/tokens.json")
+        Tokens : require("./private/tokens.json"),
+        General : require("./private/config.json")
     },
     Commands : {
         Plain : new Map(),
         Slash : new Map()
     }
 }
+const botName = Bot.Config.General.botName;
 const Rest = new REST({ version: "10" }).setToken(Bot.Config.Tokens.discord);
 
 // Accumulate all the commands
@@ -43,14 +45,14 @@ Bot.Commands.Slash.forEach(command => {
 });
 (async () => {
     try {
-        console.log("GHOST > Syncing slash commands");
+        console.log("${botName} > Syncing slash commands");
 
         const data = await Rest.put(
             Routes.applicationCommands(Bot.Config.Tokens.discordId),
             { body: serializedSlashCommands }
         );
 
-        console.log(`GHOST > Successfully synced ${data.length} slash command(s)`);
+        console.log(`${botName} > Successfully synced ${data.length} slash command(s)`);
     } catch (err) {
         console.error(err);
     }
@@ -58,9 +60,9 @@ Bot.Commands.Slash.forEach(command => {
 
 // Discord bot online
 Bot.Client.on("ready", () => {
-    console.log(`GHOST > Logged in as: ${Bot.Client.user.tag}`);
-    console.log(`GHOST > Loaded ${Bot.Commands.Slash.size} slash commands`);
-    console.log(`GHOST > Loaded ${Bot.Commands.Plain.size} plain commands`);
+    console.log(`${botName} > Logged in as: ${Bot.Client.user.tag}`);
+    console.log(`${botName} > Loaded ${Bot.Commands.Slash.size} slash commands`);
+    console.log(`${botName} > Loaded ${Bot.Commands.Plain.size} plain commands`);
 });
 
 // Slash command interaction handler

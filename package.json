@@ -2,15 +2,15 @@
   "name": "megras-bot",
   "version": "2.0.0",
   "description": "Entertainment and adventure bot",
-  "main": "index.js",
+  "main": "src/bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node src/bot.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BitRapture/Megras-Bot.git"
   },
-  "author": "",
+  "author": "BitRapture",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BitRapture/Megras-Bot/issues"
