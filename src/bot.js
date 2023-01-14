@@ -54,7 +54,7 @@ const monitorScriptsPath = "./commands/monitor";
 var monitorScriptFiles = FS.readdirSync(monitorScriptsPath).filter(file => file.endsWith(".js"));
 
 monitorScriptFiles.forEach(monitorFile => {
-    const monitorScript = require(`${monitorScriptsPath}${monitorFile}`);
+    const monitorScript = require(`${monitorScriptsPath}/${monitorFile}`);
     if ("execute" in monitorScript) Bot.Commands.Monitor.push(monitorScript);
 })
 
