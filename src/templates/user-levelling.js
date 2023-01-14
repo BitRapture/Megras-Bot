@@ -1,4 +1,4 @@
-const LevelSchemaVersion = 1;
+const LevelSchemaVersion = 2;
 
 module.exports = {
     GetLevelExperience(level) {
@@ -12,9 +12,18 @@ module.exports = {
     },
     GetUserLevelSchema(version = LevelSchemaVersion, schema = null) {
         switch (version) {
+            case 2:
+                // Need a rate limit
+                schema.rateLimit = Date.now();
+                schema.version = 2;
             case 1:
                 // Simply create the first schema
-                if (!schema) schema = { version: 1, level: 0, experience: 0 };
+                if (!schema) schema = { 
+                    version: 1, 
+                    level: 0, 
+                    experience: 0, 
+                    rateLimit: 0  // v2
+                };
         }
         if (version < LevelSchemaVersion) return this.GetUserLevelSchema(version + 1, schema);
         return schema;
