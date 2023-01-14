@@ -8,7 +8,7 @@ module.exports = {
     },
     GiveExperience() {
         // Mee6 compliant experience per message formula
-        return 15 + Math.ceil(Math.random * 10);
+        return 15 + Math.ceil(Math.random() * 10);
     },
     GetUserLevelSchema(version = LevelSchemaVersion, schema = null) {
         switch (version) {
