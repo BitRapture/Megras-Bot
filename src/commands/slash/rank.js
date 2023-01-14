@@ -24,7 +24,8 @@ module.exports = {
 
         let embed = Bot.Templates.Embeds.Simple(`${memberNickname}'s rank profile`, `${levelInfo.level} ${progressBar} ${levelInfo.level + 1}`, [
             { name: "Current EXP", value: `${levelInfo.experience}`, inline: true },
-            { name: "EXP required for rank up", value: `${expRequired}`, inline: true }
+            { name: "Next level EXP", value: `${nextLevelExp}`, inline: true },
+            { name: "EXP Needed", value: `${expRequired}`, inline: true }
         ]);
 
         await interaction.reply(embed);
