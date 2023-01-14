@@ -15,11 +15,10 @@ module.exports = {
             case 2:
                 // Need a rate limit
                 schema.rateLimit = Date.now();
-                schema.version = 2;
             case 1:
                 // Simply create the first schema
                 if (!schema) schema = { 
-                    version: 1, 
+                    version: LevelSchemaVersion, 
                     level: 0, 
                     experience: 0, 
                     rateLimit: 0  // v2

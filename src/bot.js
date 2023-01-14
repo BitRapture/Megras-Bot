@@ -65,7 +65,7 @@ Bot.Commands.Slash.forEach(command => {
 });
 (async () => {
     try {
-        console.log("${botName} > Syncing slash commands");
+        console.log(`${botName} > Syncing slash commands`);
 
         const data = await Rest.put(
             Routes.applicationCommands(Bot.Config.Tokens.discordId),
