@@ -16,16 +16,17 @@ module.exports = {
         let currentLevelExp = Bot.Templates.Levels.GetLevelExperience(levelInfo.level);
         let nextLevelExp = Bot.Templates.Levels.GetLevelExperience(levelInfo.level + 1);
         let expRequired = nextLevelExp - levelInfo.experience;
+
         let deltaCurrentExp = levelInfo.experience - currentLevelExp;
         let deltaNextExp = nextLevelExp - currentLevelExp;
         let deltaExp = Math.ceil((deltaCurrentExp / deltaNextExp) * 10);
 
-        let progressBar = "".padStart(deltaExp - 10, "_").padEnd(deltaExp, "X");
+        let progressBar = "".padStart(deltaExp, "X").padEnd(10, "x");
 
         let embed = Bot.Templates.Embeds.Simple(`${memberNickname}'s rank profile`, `${levelInfo.level} **${progressBar}** ${levelInfo.level + 1}`, [
             { name: "Current EXP", value: `${levelInfo.experience}`, inline: true },
             { name: "Next level EXP", value: `${nextLevelExp}`, inline: true },
-            { name: "EXP Needed", value: `${expRequired}`, inline: true }
+            { name: "Required EXP", value: `${expRequired}`, inline: true }
         ]);
 
         await interaction.reply(embed);
