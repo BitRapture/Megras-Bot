@@ -4,7 +4,7 @@ module.exports = {
         let levelInfo = Bot.Templates.Levels.GetUserInfo(message.member.id, Bot.Store.Users.Rank);
         let nextLevelExp = Bot.Templates.Levels.GetLevelExperience(levelInfo.level + 1);
 
-        levelInfo.experience += Bot.Template.Levels.GiveExperience();
+        levelInfo.experience += Bot.Templates.Levels.GiveExperience();
 
         if (levelInfo.experience >= nextLevelExp) {
             levelInfo.level += 1;
