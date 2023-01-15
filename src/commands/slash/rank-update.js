@@ -50,7 +50,7 @@ module.exports = {
                     embedDesc = `Level set from \`${levelInfo.level}\` to \`${level}\``;
                     levelInfo.level = level;
                     levelInfo.experience = Bot.Templates.Levels.GetLevelExperience(level);
-                    Bot.Store.Users.Rank.set(levelInfo);
+                    Bot.Store.Users.Rank.set(member.id, levelInfo);
                 }
                 break;
             case "add-exp":
@@ -66,7 +66,7 @@ module.exports = {
                     embedDesc = `Experience added: \`${levelInfo.experience}\` + \`${experience}\` = \`${allExperience}\``;
                     levelInfo.level = newLevel;
                     levelInfo.experience += experience;
-                    Bot.Store.Users.Rank.set(levelInfo);
+                    Bot.Store.Users.Rank.set(member.id, levelInfo);
                 }
                 break;
         }
