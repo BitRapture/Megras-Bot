@@ -1,4 +1,7 @@
 {
     "prefix": "m!",
-    "botName": "Megras"
+    "botName": "Megras",
+    "mods": [
+        "196013975291297792"
+    ]
 }

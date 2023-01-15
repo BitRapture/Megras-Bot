@@ -1,11 +1,12 @@
-const { SlashCommandBuilder, messageLink } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
     data : new SlashCommandBuilder()
         .setName("rank")
         .setDescription("Get your or another member's server rank information")
         .addUserOption(option =>
-            option.setName("member")
+            option
+                .setName("member")
                 .setDescription("Server member to check")),
 
     async execute(Bot, interaction) {

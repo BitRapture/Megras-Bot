@@ -15,6 +15,7 @@ module.exports = {
             case 2:
                 // Need a rate limit
                 schema.rateLimit = Date.now();
+                break;
             case 1:
                 // Simply create the first schema
                 if (!schema) schema = { 
@@ -23,13 +24,14 @@ module.exports = {
                     experience: 0, 
                     rateLimit: 0  // v2
                 };
+                break;
         }
         if (version < LevelSchemaVersion) return this.GetUserLevelSchema(version + 1, schema);
         return schema;
     },
     EnsureUserSchema(schema) {
-        if (isNaN(schema.level)) schema.level = 0;
-        if (isNaN(schema.experience)) schema.experience = this.GetLevelExperience(schema.level);
+        if (isNaN(schema.level) || schema.level < 0) schema.level = 0;
+        if (isNaN(schema.experience) || schema.experience < 0) schema.experience = this.GetLevelExperience(schema.level);
     },
     GetUserInfo(memberId, levelStore) {
         let info = levelStore.get(memberId);
