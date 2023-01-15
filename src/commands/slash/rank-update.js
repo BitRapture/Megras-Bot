@@ -49,7 +49,7 @@ module.exports = {
                 if (level >= 0) {
                     embedDesc = `Level set from \`${levelInfo.level}\` to \`${level}\``;
                     levelInfo.level = level;
-                    levelInfo.experience = Bot.Templates.Level.GetLevelExperience(level);
+                    levelInfo.experience = Bot.Templates.Levels.GetLevelExperience(level);
                     Bot.Store.Users.Rank.set(levelInfo);
                 }
                 break;
