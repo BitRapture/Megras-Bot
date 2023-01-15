@@ -104,12 +104,14 @@ Bot.Client.on(Events.InteractionCreate, async interaction => {
 Bot.Client.on(Events.MessageCreate, async message => {
     if (message.author.bot) return;
     let args = message.content.slice(Bot.Config.General.prefix.length).split(" ");
-    let commandName = args.shift().toLowerCase();
     
     // Run through monitoring
     Bot.Commands.Monitor.forEach(monitor => {
         monitor.execute(Bot, message, args);
     });
+
+    if (!message.content.startsWith(Bot.Config.General.prefix)) return;
+    let commandName = args.shift().toLowerCase();
 
     // Try and get relevant command
     const command = Bot.Commands.Plain.get(commandName);
