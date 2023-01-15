@@ -8,6 +8,10 @@ module.exports = {
             subcommand
                 .setName("set-level")
                 .setDescription("Set member's rank level")
+                .addUserOption(option =>
+                    option
+                        .setName("member")
+                        .setDescription("Server member to update"))
                 .addIntegerOption(option =>
                     option
                         .setName("level")
@@ -16,14 +20,14 @@ module.exports = {
             subcommand
                 .setName("add-exp")
                 .setDescription("Add experience to member's rank")
+                .addUserOption(option =>
+                    option
+                        .setName("member")
+                        .setDescription("Server member to update"))
                 .addIntegerOption(option =>
                     option
                         .setName("experience")
                         .setDescription("Experience to add")))  
-        .addUserOption(option =>
-            option
-                .setName("member")
-                .setDescription("Server member to update"))
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
     async execute(Bot, interaction) {
