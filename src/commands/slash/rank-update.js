@@ -27,7 +27,7 @@ module.exports = {
                         .setName("member")
                         .setDescription("Server member to update")
                         .setRequired(true))
-                .addIntegerOption(option =>
+                .addNumberOption(option =>
                     option
                         .setName("experience")
                         .setDescription("Experience to add")
