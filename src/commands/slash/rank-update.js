@@ -11,8 +11,8 @@ module.exports = {
                 .addUserOption(option =>
                     option
                         .setName("member")
-                        .setDescription("Server member to update"))
-                        .setRequired(true)
+                        .setDescription("Server member to update")
+                        .setRequired(true))
                 .addIntegerOption(option =>
                     option
                         .setName("level")
