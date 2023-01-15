@@ -25,9 +25,9 @@ module.exports = {
         let progressBar = "".padStart(deltaExp, "▮").padEnd(10, "▯");
 
         let embed = Bot.Templates.Embeds.Simple(`${memberNickname}'s rank profile`, `${levelInfo.level} **${progressBar}** ${levelInfo.level + 1}`, [
-            { name: "Current EXP", value: `${levelInfo.experience}`, inline: true },
-            { name: "Next level EXP", value: `${nextLevelExp}`, inline: true },
-            { name: "Required EXP", value: `${expRequired}`, inline: true }
+            { name: "Current EXP", value: `${Math.ceil(levelInfo.experience)}`, inline: true },
+            { name: "Next level EXP", value: `${Math.ceil(nextLevelExp)}`, inline: true },
+            { name: "Required EXP", value: `${Math.ceil(expRequired)}`, inline: true }
         ]);
 
         await interaction.reply(embed);
