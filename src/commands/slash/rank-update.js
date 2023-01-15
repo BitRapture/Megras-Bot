@@ -12,10 +12,12 @@ module.exports = {
                     option
                         .setName("member")
                         .setDescription("Server member to update"))
+                        .setRequired(true)
                 .addIntegerOption(option =>
                     option
                         .setName("level")
-                        .setDescription("Level to set to")))
+                        .setDescription("Level to set to")
+                        .setRequired(true)))
         .addSubcommand(subcommand => 
             subcommand
                 .setName("add-exp")
@@ -23,11 +25,13 @@ module.exports = {
                 .addUserOption(option =>
                     option
                         .setName("member")
-                        .setDescription("Server member to update"))
+                        .setDescription("Server member to update")
+                        .setRequired(true))
                 .addIntegerOption(option =>
                     option
                         .setName("experience")
-                        .setDescription("Experience to add")))  
+                        .setDescription("Experience to add")
+                        .setRequired(true)))  
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
     async execute(Bot, interaction) {
@@ -38,7 +42,7 @@ module.exports = {
         let embedTitle = `Updating ${memberNickname}'s rank profile`;
         let embedDesc = "";
 
-        switch (interaction.getSubcommand()) {
+        switch (interaction.options.getSubcommand()) {
             case "set-level":
                 let level = interaction.options.getInteger("level");
                 embedDesc = "Level must be greater than or equal to 0";
